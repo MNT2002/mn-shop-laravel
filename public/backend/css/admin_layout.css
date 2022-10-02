@@ -1,0 +1,244 @@
+.navbar-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 92px;
+}
+.page-title-wrapper{
+	padding: 2px;
+	background: #444444;
+    width: 250px;
+}
+.page-title{
+	color: #fff;
+	margin: 0;
+	text-transform: uppercase;
+	font-size: 26px;
+	font-weight: 600;
+	user-select: none;
+}
+
+.nav-list__admin {
+	margin: 0;
+	padding: 0;
+	margin-right: 18px;
+}
+.nav-item__admin{
+
+}
+.nav-item-wrapper{
+	cursor: pointer;
+}
+.nav-item__img{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	margin-right: 4px;
+}
+.nav-item__username{
+	color: #fff;
+}
+.nav-item__icon-dropdown {
+	font-size: 12px;
+	color: #fff;
+}
+
+.wrapper{
+	margin-top: 92px;
+}
+.sidebar{
+	position: fixed;
+	width: 250px;
+	height: 100%;
+	background: var(--text-color);    
+}
+.wrapper .sidebar .sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar-list .sidebar-item{
+    display: block;
+}
+.active {
+    background-color: var(--hover-color);
+}
+.sidebar-list .active .sidebar-link{
+    color: var(--text-color)
+}
+.sidebar-list .sidebar-item .sidebar-link{
+    color: #fff;
+	display: block;
+    text-decoration: none;
+	padding: 18px;	    
+}
+.sidebar-list .sidebar-item .sidebar-link .fas{
+	width: 25px!important;
+}
+.sidebar-list .sidebar-item .sidebar-link .far{
+	width: 25px!important;
+}
+.sidebar-list .sidebar-item:hover{
+	background: var(--hover-color);
+    cursor: pointer;
+}
+.sidebar-list .sidebar-item:hover .sidebar-link{
+	color: var(--text-color);
+    user-select: none;
+	text-decoration: none;
+}
+
+.sub {
+    display: none;
+    animation: opacity ease-in-out 0.3s;
+}
+@keyframes opacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.sub .sidebar-item{
+
+}
+.sub .sidebar-item .sidebar-link{
+    padding-left: 42px;
+    user-select: none;
+}
+
+#checkbox-tempt:checked ~ .sub{
+    display: block;
+}
+
+.notification1{
+	display: flex;
+}
+.notification1 .number1{
+	font-size: 15px;
+	display: block;
+    padding-left: 100px;
+    color: #fff;
+} 
+ 
+.notification2{
+	display: flex;
+}
+.notification2 .number2{
+	font-size: 15px;
+	display: block;
+    padding-left: 85px;
+    color: #fff;
+   }
+
+   /* begin Form logged */
+.form-logged-overlay {
+    position: fixed;
+    z-index: 40;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: transparent;
+    display: none;
+}
+.form-logged {
+    position: absolute;
+    z-index: 50;
+    top: 80px;
+    right: 8px;
+    width: 240px;
+    background-color: #fff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 6px;
+    animation: opacity linear 0.1s;
+    display: none;
+}
+@keyframes opacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.header.header-sticky .form-logged {
+    top: calc(100px - var(--banner__header-height));
+    top: 12px;
+}
+
+.form-logged-wrapper {
+}
+
+
+
+.form-logged__list {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+.form-logged__list > li {
+    border-bottom: 1px solid #dedede;
+    padding: 14px 12px;
+}
+.form-logged__link {
+    text-decoration: none;
+    text-align: left;
+    color: #333;
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    user-select: none;
+}
+.form-logged__link:hover {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.icon-angle-right {
+    flex: 1;
+    text-align: right;
+    font-size: 24px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.sign-out-box {
+    padding: 0;
+    background: var(--text-color);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+.sign-out-box:hover {
+    background-color: var(--hover-color);
+}
+.sign-out-box:hover li span {
+    color: var(--text-color);
+}
+
+.sign-out-box .sign-out-btn {
+    text-align: center;
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+}
+.sign-out-box .sign-out-btn .sign-out-btn__link {
+    display: block;
+    color: var(--white-color);
+    font-size: 1.6rem;
+    text-decoration: none;
+    padding: 16px 12px;
+}
+
+/* main content */
+.main-content {
+	margin-left: 250px;
+    height: 100%;
+    width: 100%;
+}

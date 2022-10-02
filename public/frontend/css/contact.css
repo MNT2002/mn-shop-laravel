@@ -1,0 +1,146 @@
+/* Begin: Reinsurance */
+.Contact-block {
+    margin-top: 70px;
+    margin-bottom: 32px;
+    padding: 0 4vw;
+}
+
+.reinsurance-container {
+    width: 100%;
+    height: 100%;
+    margin: 16px 0;
+}
+
+.reinsurance-list {
+    flex-wrap: nowrap !important;
+}
+
+.reinsurance-item-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-right: 1px solid #e6e6e6;
+}
+
+.reinsurance-item {
+    width: 100%;
+}
+
+.reinsurance-item-link {
+    position: relative;
+    display: inline-block;
+    padding-left: 36px;
+    color: var(--text-color);
+    font-size: 0.85rem;
+    text-align: left;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.icon-wrap {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -10px;
+}
+
+.icon-wrap img {
+    max-width: 18px;
+}
+
+.contact__title {
+    color: var(--text-color);
+    font-size: 1.6rem;
+    letter-spacing: 1.2px;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    user-select: none;
+}
+
+.contact__title::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 1px;
+    top: 50%;
+    background-color: #d9d9d9;
+    z-index: 0;
+
+}
+
+.contact__title h3 {
+    position: relative;
+    display: inline-block;
+    margin: 16px 0;
+    padding: 0 16px;
+    background-color: #fff;
+    text-transform: uppercase;
+}
+
+.discount-title-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.discount-title {
+    font-size: 112px;
+    font-weight: 500;
+    background-image: url("../images/bg-text.jpg");
+    -webkit-background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
+    user-select: none;
+}
+
+.sell-up-box {
+    width: 100%;
+    height: 100%;
+}
+
+.sell-up-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+/* Mobile */
+@media (max-width: 46.2499em) {
+
+    /* Contact */
+
+    .reinsurance-list {
+        flex-wrap: wrap !important;
+    }
+
+    .reinsurance-item-wrap {
+        width: 100%;
+        height: 49px;
+        text-align: left;
+        border-right: none;
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+    .reinsurance-item {
+        padding: 4px 0;
+    }
+
+    .reinsurance-item-link {
+        font-size: 1rem;
+    }
+
+    .discount-title {
+        font-size: 38px;
+    }
+}
+
+@media (min-width: 46.25em) and (max-width: 63.9475em) {
+    .discount-title {
+        font-size: 86px;
+    }
+}

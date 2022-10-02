@@ -1,0 +1,30 @@
+:root {
+    --main-color: #333;
+    --white-color: #fff;
+    --black-color: #000;
+    --text-color: #333;
+    --text-color2: #3a4754;
+    --hover-color: #adadad;
+
+    --header-height: 120px;
+    --navbar-height: 60px;
+    --menu-height: calc(var(--header-height) - var(--navbar-height));
+    --banner__header-height: 34px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    font-weight: 500;
+    font-size: 1.6rem;
+    text-rendering: optimizeSpeed;
+}

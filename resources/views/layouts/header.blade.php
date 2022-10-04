@@ -38,7 +38,14 @@
             </li>
 
             <li class="header__navbar-item-user header__navbar-item">
-                <i class="fa-solid fa-user"></i>
+                <?php
+                        $name = Session::get('user_name');
+                        if($name) {
+                           echo '<a class="header__navbar-item-user-link" href="login-page"><i class="fa-solid fa-user"></i></a>';
+                        } else {
+                            echo '<a href="login-page"><i class="fa-solid fa-user"></i></a>';
+                        }
+                        ?>
             </li>
 
             @include("layouts.formUser")

@@ -59,10 +59,10 @@
                         </span>
                     </li> --}}
         <li class="custom-link-item user-icon-mobile ">
-            <span>
+            <a href="login-page">
                 <i class="custom-link-icon fa-solid fa-user"></i>
                 Tài khoản
-            </span>
+            </a>
         </li>
         <li class="signout-mobile-btn">
             <span>

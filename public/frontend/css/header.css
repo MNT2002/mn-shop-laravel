@@ -61,6 +61,11 @@
 .header__navbar-item-user {
     display: block;
 }
+.header__navbar-item-user a{
+    color: var(--text-color);
+    width: 100%;
+}
+
 
 .header__navbar-item--has-notify:hover .header__notify-wrap {
     display: block;
@@ -156,7 +161,8 @@
     user-select: none;
 }
 .header.header-sticky .cart-link ,
-.header.header-sticky .header__navbar-item {
+.header.header-sticky .header__navbar-item ,
+    .header.header-sticky .header__navbar-item a{
     color: var(--white-color);
 }
 

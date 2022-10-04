@@ -1,0 +1,143 @@
+/* Category banner */
+.category-banner-block {
+    padding: 2vw 4vw;
+}
+
+.category-banner-box {
+    padding: 22px ;
+}
+
+.category-banner-block a:hover .category-banner-item .label-box::before {
+    height: 100%;
+    opacity: 0.6;
+}
+
+.category-banner-block a:hover .category-banner-item .label-wrap p::after {
+    width: 100%;
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+.category-banner-item {
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-bottom: 72%;
+    border-radius: 3px;
+}
+
+.category-banner-item__ao-thun {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../images/categoryBanner/Áo\ thun\ -\ banner.jfif');
+}
+
+.category-banner-item__ao-somi {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../images/categoryBanner/Áo\ sơ\ mi.jpg')
+}
+
+.category-banner-item__ao-khoac-jeans {
+    padding-bottom: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../images/categoryBanner/Áo\ khoác\ jeans\ -\ banner.jfif');
+}
+
+.category-banner-item__phu-kien{
+    padding-bottom: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../images/categoryBanner/phụ\ kiện.jfif');
+}
+
+.category-banner-item__other {
+    padding-bottom: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../images/categoryBanner/4.jpg');
+}
+
+.category-banner-item .label-box {
+    position: absolute;
+    display: flex;
+    align-content: flex-end;
+    height: 100%;
+    width: 100%;
+    padding: 30px;
+}
+
+.category-banner-item .label-box::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 70%;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
+    ;
+    opacity: 0.3;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    transition: all 0.2s;
+}
+
+.category-banner-item .label-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.category-banner-item .label-wrap h4 {
+    display: block;
+    font-size: 2.6rem;
+    color: var(--white-color);
+    letter-spacing: 2px;
+    margin: 18px 0;
+}
+
+.category-banner-item .label-wrap p {
+    position: relative;
+    display: inline;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--white-color);
+    margin: 0;
+}
+
+.category-banner-item .label-wrap p::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    right: 0;
+    height: 1px;
+    width: 0;
+    background: var(--white-color);
+    transition: width .5s;
+}
+
+@media (max-width: 46.2499em) {
+    .category-banner-block {
+        padding: 0;
+    }
+    .category-banner-box {
+        padding: 0;
+    }
+
+    .category-banner-item .label-box {
+        padding: 6px;
+    }
+
+    .category-banner-item .label-wrap h4 {
+        font-size: 1.6rem;
+        margin: 8px 0;
+    }
+
+    .category-banner-item .label-wrap p {
+        font-size: 1rem;
+    }
+}

@@ -31,6 +31,7 @@ class userController extends Controller
             Session::put('user_name', $user->name);
             Session::put('user_id', $user->name);
             Session::put('user_level', $user->quyen);
+            Session::put('message_success', 'Đăng nhập thành công');
             return Redirect::to('/');
         } else {
             Session::put('message', 'Tài khoản hoặc mật khẩu không chính xác');

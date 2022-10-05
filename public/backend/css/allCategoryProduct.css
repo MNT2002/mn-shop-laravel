@@ -5,7 +5,7 @@
     margin-bottom: 32px;
 }
 .panel-heading {
-    color: var(--text-color);
+    background-color: #7e7e7e;
     font-size: 22px;
     font-weight: 600;
 }
@@ -52,4 +52,15 @@ input {
 }
 .pagination li:hover a{
     background-color: #eee;
+}
+.btn-category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-category i {
+    margin-right: 6px;
+}
+.fa-thumbs-styling {
+    font-size: 24px;
 }

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Users;
 use Faker\Core\File;
+use Session;
+use Illuminate\Support\Facades\Redirect;
+
+session_start();
 
 class UsersController extends Controller
 {
@@ -13,8 +17,17 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function AuthLogin() {
+        $admin_id = Session::get('admin_id');
+        if($admin_id) {
+            return Redirect::to('admin.dashboard');
+        } else {
+            return Redirect::to('admin')->send();
+        }
+    }
     public function index()
     {
+        $this->AuthLogin();
         $userList = Users::get();
         return view('admin.userList', [
             'userList' => $userList,
@@ -28,6 +41,7 @@ class UsersController extends Controller
      */
     public function create()
     {
+        $this->AuthLogin();
         return view('admin.addUser');
     }
 
@@ -39,16 +53,17 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        $this->AuthLogin();
         $request->validate([
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:4|max:40',
             'confirm_password' => 'required|same:password',
-            'image' => 'required|mimes:jpg,png,jpeg|max:5048',
+            'image' => 'mimes:jpg,png,jpeg|max:5048',
         ], [
-            'image.required' => 'Bạn chưa chọn ảnh đại diện',
             'image.max' => 'Ảnh không được có kích thước lớn hơn 5Mb',
-            
+            'image.mimes' => 'Ảnh phải là file có định dạng jpg, png hoặc jpeg',
+
             'name.required' => 'Bạn chưa nhập tên người dùng',
             'name.min' => 'Tên người dùng phải có ít nhất 3 ký tự',
 
@@ -62,23 +77,26 @@ class UsersController extends Controller
 
             'confirm_password.required' => 'Mật khẩu nhập lại không khớp',
             'confirm_password.same' => 'Mật khẩu nhập lại không khớp',
-            
+
 
         ]);
-        $generatedImageName = 'image'.time().'-'
-                                .$request->name.'.'
-                                .$request->image->extension();
+        $get_image = '';
+        if ($request->file('image')) {
+            $generatedImageName = 'image' . time() . '-'
+                . $request->name . '.'
+                . $request->image->extension();
 
-        // move to a folder
-        $request->image->move(public_path('backend/images/userAvata'), $generatedImageName);
-
+            // move to a folder
+            $request->image->move(public_path('upload/userAvata'), $generatedImageName);
+            $get_image = $generatedImageName;
+        }
         $user = Users::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => md5($request->input('password')),
             'confirm_password' => md5($request->input('confirm_password')),
             'quyen' => $request->input('quyen'),
-            'image_path' => $generatedImageName,
+            'image_path' => $get_image,
         ]);
         $user->save();
         return redirect('/users');
@@ -92,6 +110,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
+        $this->AuthLogin();
         //
     }
 
@@ -103,7 +122,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        echo(123);
+        $this->AuthLogin();
+        echo ('Trang update đang bảo trì');
     }
 
     /**
@@ -115,6 +135,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->AuthLogin();
         //
     }
 
@@ -126,8 +147,11 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        $this->AuthLogin();
         $user = Users::find($id);
-        unlink(public_path('backend/images/userAvata/' .$user->image_path));
+        if ($user->image_path != '') {
+            unlink(public_path('upload/userAvata/' . $user->image_path));
+        }
         $user->delete();
 
         return redirect('/users');

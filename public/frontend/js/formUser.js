@@ -14,5 +14,7 @@ function hideFormLogged() {
     formLogged.style.display = "none";
 }
 
-userLink.addEventListener("click", showFormLogged);
+if(userLink) {
+    userLink.addEventListener("click", showFormLogged);
+}
 formLoggedOverlay.addEventListener("click", hideFormLogged);

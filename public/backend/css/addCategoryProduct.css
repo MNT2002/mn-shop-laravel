@@ -28,13 +28,13 @@ p.hd-title {
     background-color: #f05050;
 }
 .text-success {
-    color: #27c24c;
+    color: #27c24c !important;
 }
 .text-warning {
-    color: #fad733;
+    color: #fad733 !important;
 }
 .text-danger {
-    color: #f05050;
+    color: #f05050 !important;
 }
 .btn-default {
     color: #58666e !important;
@@ -71,17 +71,16 @@ p.hd-title {
     margin: 0 auto;
 }
 .form-group {
-    margin-bottom: 18px;
+    margin-bottom: 14px;
 }
 .form-control {
     padding: 12px;
+    font-size: 14px;
+    appearance: auto;
 }
 .btn {
     padding: 6px 16px;
      color: #fff;
      font-size: 16px;
      font-weight: 400;
-}
-.form-control {
-    font-size: 14px;
 }

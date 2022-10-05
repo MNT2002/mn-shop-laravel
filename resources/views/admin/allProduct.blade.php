@@ -3,9 +3,9 @@
 <div class="all-category-product-wrapper">
     <div class="panel panel-default">
         <div class="panel-heading">
-          Liệt kê danh mục sản phẩm
+          Liệt kê sản phẩm
         </div>
-        <div class="row w3-res-tb">
+        {{-- <div class="row w3-res-tb">
           <div class="col-sm-5 m-b-xs">
             <select class="input-sm form-control w-sm inline v-middle">
               <option value="0">Bulk action</option>
@@ -25,7 +25,7 @@
               </span>
             </div>
           </div>
-        </div>
+        </div> --}}
         <div class="table-responsive">
           <?php
                     $message = Session::get('message');
@@ -44,40 +44,54 @@
                     <input type="checkbox"><i></i>
                   </label>
                 </th>
-                <th>Tên danh mục</th>
+                <th>Tên sản phẩm</th>
+                <th>Hình ảnh</th>
+                <th>Giá</th>
+                <th>Danh mục</th>
                 <th>Hiển thị</th>
                 <th style="width:100px;">Edit</th>
                 <th style="width:100px;">Delete</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($all_category_product as $each_cate_pro)
+              @foreach ($all_product as $each_product)
                   
               <tr>
                 <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-                <td>{{ $each_cate_pro->category_name }}</td>
+                <td>{{ $each_product->product_name }}</td>
+                <td>
+                    @if ($each_product->product_image_path)
+                    <div class="product_image-wrapper">
+                        <img class="product_image" src="{{ asset('/public/upload/product/'. $each_product->product_image_path) }}" alt="">
+                    </div>
+                    @else
+                    <img class="product_image" src="" alt="">
+                    @endif
+                </td>
+                <td>{{ $each_product->product_price }}</td>
+                <td>{{ $each_product->category_name }}</td>
                 <td><span class="text-ellipsis">
                   <?php
-                  if($each_cate_pro->category_status == 0) {
+                  if($each_product->product_status == 0) {
                   ?>
-                    <a href="{{ URL::to('/active-category-product/'.$each_cate_pro->category_id) }}"><i class="fa-thumbs-styling text-danger fa-solid fa-thumbs-down"></i></a>
+                    <a href="{{ URL::to('/active-product/'.$each_product->product_id) }}"><i class="fa-thumbs-styling text-danger fa-solid fa-thumbs-down"></i></a>
                   <?php 
                   } else {
                     ?>
-                    <a href="{{ URL::to('/unactive-category-product/'.$each_cate_pro->category_id) }}"><i class="fa-thumbs-styling text-success fa-solid fa-thumbs-up"></i></a>
+                    <a href="{{ URL::to('/unactive-product/'.$each_product->product_id) }}"><i class="fa-thumbs-styling text-success fa-solid fa-thumbs-up"></i></a>
                     <?php
                   }
                   ?>
                 </span></td>
                 
                 <td>
-                  <a class="btn btn-category btn-primary" href="{{ URL::to('/edit-category-product/'.$each_cate_pro->category_id) }}">
+                  <a class="btn btn-category btn-primary" href="{{ URL::to('/edit-product/'.$each_product->product_id) }}">
                     <i class="fa-solid fa-pencil"></i>
                     Edit
                   </a>
                 </td>
                 <td>
-                  <a onclick="return confirm('Bạn có chắc chắn xóa danh mục này không?')" class="btn btn-category btn-danger" href="{{ URL::to('/delete-category-product/'.$each_cate_pro->category_id) }}">
+                  <a onclick="return confirm('Bạn có chắc chắn xóa sản phẩm này không?')" class="btn btn-category btn-danger" href="{{ URL::to('/delete-product/'.$each_product->product_id) }}">
                     <i class="fa-solid fa-trash"></i>
                     Delete
                   </a>

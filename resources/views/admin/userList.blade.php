@@ -13,8 +13,8 @@
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Level</th>
-                    <th scope="col">Delete</th>
                     <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,7 +22,11 @@
                     <tr>
                         <th scope="row">{{ $user->id }}</th>
                         <td>
-                            <img class="user_image" src="{{ asset('/public/backend/images/userAvata/'. $user->image_path) }}" alt="">
+                            @if ($user->image_path)
+                            <img class="user_image" src="{{ asset('/public/upload/userAvata/'. $user->image_path) }}" alt="">
+                            @else
+                            <img class="user_image" src="{{ asset('/public/upload/userAvata/default.jpg')}}" alt="">
+                            @endif
                             {{ $user->name }}
                         </td>
                         <td>{{ $user->email }}</td>
@@ -34,20 +38,20 @@
                             @endif
                         </td>
                         <td>
-                            <form action="users/{{ $user->id }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <button class="btn btn-danger">
-                                    <i class="fa-solid fa-trash"></i>
-                                    Delete
-                                </button>
-                            </form>
-                        </td>
-                        <td>
                             <a class="btn btn-primary" href="users/{{ $user->id }}/edit">
                                 <i class="fa-solid fa-pencil"></i>
                                 Edit
                             </a>
+                        </td>
+                        <td>
+                            <form action="users/{{ $user->id }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button onclick="return confirm('Bạn có chắc chắn xóa người dùng này không?')" class="btn btn-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                    Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

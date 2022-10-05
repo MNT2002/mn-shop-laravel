@@ -26,7 +26,7 @@
             <!-- Dropdown -->
             <li class="nav-item__admin">
                 <div class="nav-item-wrapper">
-                    <img class="nav-item__img" alt="" src="{{ asset('public/backend/images/userAvata/default.jpg')}}">
+                    <img class="nav-item__img" alt="" src="{{ asset('public/upload/userAvata/default.jpg')}}">
                     <span class="nav-item__username">
                         <?php
                         $name = Session::get('admin_name');
@@ -74,16 +74,29 @@
                     <a class="sidebar-link" href="{{ URL::to('/dashboard') }}"><i class="fas fa-home"></i>Tổng quan</a>
                 </li>
                 
-                <label for="checkbox-product" class="sidebar-item">
-                    <div class="sidebar-link" ><i class="fas fa-users"></i>Danh mục sản phẩm</div>
+                <label for="checkbox-cate-product" class="sidebar-item">
+                    <div class="sidebar-link" ><i class="fas fa-solid fa-clipboard-list"></i>Danh mục sản phẩm</div>
                 </label>
-                <input id="checkbox-product" class="d-none" type="checkbox" name="" id="">
-                <ul class="sub sub-nav-product sidebar-list">
+                <input id="checkbox-cate-product" class="d-none" type="checkbox" name="" id="">
+                <ul class="sub sub-nav-cate-product sidebar-list">
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="{{ URL::to('/add-category-product') }}">Thêm danh mục sản phẩm</a>
                     </li>
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="{{ URL::to('/all-category-product') }}">Liệt kê danh mục sản phẩm</a>
+                    </li>
+                </ul>
+                
+                <label for="checkbox-product" class="sidebar-item">
+                    <div class="sidebar-link" ><i style="margin-right: 8px" class="fa-brands fa-product-hunt"></i>Sản phẩm</div>
+                </label>
+                <input id="checkbox-product" class="d-none" type="checkbox" name="" id="">
+                <ul class="sub sub-nav-product sidebar-list">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{ URL::to('/add-product') }}">Thêm sản phẩm</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{ URL::to('/all-product') }}">Liệt kê sản phẩm</a>
                     </li>
                 </ul>
 

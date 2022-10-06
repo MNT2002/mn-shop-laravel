@@ -1,6 +1,8 @@
 @extends("layouts.defaultHeaderFooter")
 @section("content")
-
+@section("title_page")
+<title>Đăng nhập</title>
+@endsection
 <div class="form-sign-in">
     <div class="sign-in-wrapper">
         {{-- <div class="sign-in-close-button">
@@ -90,6 +92,14 @@
         <div class="or-box">Or</div>
     </div>
 </div>
-
+@section('categories')
+        @foreach ($categories as $category)
+            <li class="menu-item">
+                <a href="{{ URL::to('/danh-muc-san-pham/' . $category->category_id) }}">
+                    <span class="menu-item-name">{{ $category->category_name }}</span>
+                </a>
+            </li>
+        @endforeach
+    @endsection
 
 @endsection

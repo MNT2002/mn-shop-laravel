@@ -51,7 +51,7 @@ class AdminController extends Controller
                 Session::put('admin_image_path', $admin->image_path);
             } else {
                 Session::put('message', 'Tài khoản của bạn không đủ quyền truy cập');
-            return Redirect::to('/admin');
+                return Redirect::to('/admin');
             }
 
             return Redirect::to('/dashboard');

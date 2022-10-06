@@ -1,5 +1,6 @@
 @extends("layouts.defaultHeaderFooter")
 @section("content")
+{{-- slider --}}
     <div class="slide">
         <div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
@@ -41,6 +42,35 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
+        </div>
+    </div>
+
+    <div class="product-best-sellers">
+        <div class="product-best-sellers__title">
+            <h3>SẢN PHẨM MỚI NHẤT</h3>
+        </div>
+
+        <div class="row p-0 m-0 product-best-seller-wrapper">
+            @foreach ($products as $product)
+            <div class="product-best-sellers__item col-6 col-md-4 col-lg-3">
+                <a href="" class="product-best-sellers__link">
+                    <div class="item__img-wrap">
+                        <img src="{{ asset('/public/upload/product/'. $product->product_image_path) }}" alt="" class="item__img" />
+                    </div>
+                    <div class="item__name-wrap">
+                        <h3 class="item__name">{{ $product->product_name }}</h3>
+                        <span class="item__price">{{ number_format($product->product_price) .'.đ'  }}</span>
+                    </div>
+                    <button class="item__btn">
+                        <span>XEM SẢN PHẨM</span>
+                    </button>
+                </a>
+            </div>
+            @endforeach
+        </div>
+
+        <div class="product-best-sellers__border-bottom">
+            <hr />
         </div>
     </div>
 
@@ -120,4 +150,28 @@
             </div>
         </div>
     </div>
+
+    @include('layouts.contact')
+
+    @section("categories")
+    @foreach ($categories as $category)
+    <li class="menu-item">
+        <a href="{{ URL::to("/danh-muc-san-pham/".$category->category_id) }}">
+            <span class="menu-item-name">{{ $category->category_name }}</span>
+        </a>
+    </li>
+    @endforeach
+    @endsection
+
+    <?php
+                $messageSucces = Session::get("message_success");
+                if($messageSucces) {
+                ?>
+                  @push("scripts")
+                  <script>alert("Đăng nhập thành công")</script>
+                  @endpush
+                <?php
+                  Session::put("message_success", null);
+                }
+                ?>
 @endsection

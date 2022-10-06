@@ -160,4 +160,16 @@ class ProductController extends Controller
         Session::put('message','Xóa sản phẩm thành công');
         return Redirect::to('all-product');
     }
+    //End Admin page
+
+    public function details_product($product_id) {
+        $category_parent_page =  Products::join('tbl_category_product','tbl_product.category_id','=' ,'tbl_category_product.category_id')->where('product_id',$product_id)->first();
+        $product = Products::where('product_id', $product_id)->first();
+        $categories = Category_product::where('category_status', '1')->get()->sortBy('category_id');
+        return view('pages.product.show_details', [
+            'categories' => $categories,
+            'product' => $product,
+            'category_parent_page' => $category_parent_page,
+        ]);
+    }
 }

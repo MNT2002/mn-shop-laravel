@@ -97,6 +97,8 @@
     color: var(--text-color2);
     margin: 4px 0 0;
     user-select: none;
+    font-size: 1.8rem;
+    font-weight: 600;
 }
 
 .sign-up-box-left input {
@@ -237,7 +239,7 @@
 
 .haven-account-wrapper {
     text-align: center;
-    margin: 46px 0 12px;
+    margin: 38px 0 12px;
 }
 
 .haven-account-wrapper h5 {
@@ -424,6 +426,8 @@
     color: var(--text-color2);
     margin: 4px 0 0;
     user-select: none;
+    font-size: 1.8rem;
+    font-weight: 600;
 }
 
 .sign-in-box-left input {
@@ -490,7 +494,7 @@
 
 .haven-account-wrapper {
     text-align: center;
-    margin: 46px 0 12px;
+    margin: 38px 0 12px;
 }
 
 .haven-account-wrapper h5 {
@@ -615,7 +619,7 @@
     max-width: 188px;
     margin-left: 6px;
     text-decoration: underline;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-style: italic;
     font-weight: 400;
     display: -webkit-box;

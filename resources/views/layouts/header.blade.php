@@ -16,6 +16,7 @@
     </div>
 </div>
 
+{{-- Header --}}
 <header class="header">
     {{-- {/* Nav bar */} --}}
     <div class="header__navbar">
@@ -23,11 +24,11 @@
             <li class="header__navbar-item header__navbar-item-bar">
                 <i class="fa-solid fa-bars"></i>
             </li>
-            @include("layouts.mobileMenu")
+            @include('layouts.mobileMenu')
         </div>
 
         <div class="header__logo">
-            <a href="/">MN Shop</a>
+            <a href=" /mn-shop-laravel">MN Shop</a>
         </div>
 
         <ul class="header__navbar-list flex-right justify-content-end">
@@ -39,16 +40,16 @@
 
             <li class="header__navbar-item-user header__navbar-item">
                 <?php
-                        $name = Session::get('user_name');
-                        if($name) {
-                           echo '<a class="header__navbar-item-user-link" href="login-page"><i class="fa-solid fa-user"></i></a>';
-                        } else {
-                            echo '<a href="login-page"><i class="fa-solid fa-user"></i></a>';
-                        }
-                        ?>
+                $name = Session::get('user_name');
+                if ($name) {
+                    echo '<a class="header__navbar-item-user-link" href="\mn-shop-laravel/login-page"><i class="fa-solid fa-user"></i></a>';
+                } else {
+                    echo '<a href="\mn-shop-laravel/login-page"><i class="fa-solid fa-user"></i></a>';
+                }
+                ?>
             </li>
 
-            @include("layouts.formUser")
+            @include('layouts.formUser')
 
             <li class="header__navbar-item header__navbar-item-search">
                 <form class="form-mini-search" action="">
@@ -74,7 +75,8 @@
     <div class="header-menu-wrap">
         <div class="header-menu">
             <ul class="menu-list">
-                <li class="menu-item">
+                @section('categories')
+                {{-- <li class="menu-item">
                     <a href="/aothun">
                         <span class="menu-item-name">Áo thun</span>
                     </a>
@@ -94,7 +96,8 @@
                     <a href="#">
                         <span class="menu-item-name">Phụ kiện</span>
                     </a>
-                </li>
+                </li>      --}}
+                @show
             </ul>
         </div>
     </div>

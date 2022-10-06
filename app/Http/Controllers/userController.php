@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Users;
 use Session;
+use App\Models\Category_product;
 
 session_start();
 
@@ -14,11 +15,17 @@ class userController extends Controller
 {
     public function index()
     {
-        return view('pages.login_page');
+        $categories = Category_product::where('category_status', '1')->get()->sortBy('category_id');
+        return view('pages.login_page', [
+            'categories' => $categories,
+        ]);
     }
     public function sign_up_index()
     {
-        return view('pages.sign_up_page');
+        $categories = Category_product::where('category_status', '1')->get()->sortBy('category_id');
+        return view('pages.sign_up_page', [
+            'categories' => $categories,
+        ]);
     }
     public function login(Request $request)
     {
@@ -79,6 +86,7 @@ class userController extends Controller
         Session::put('user_name', $user->name);
         Session::put('user_id', $user->name);
         Session::put('user_level', $user->quyen);
+        Session::put('message_success', 'Đăng kí thành công');
         $user->save();
         return redirect('/'); 
         // same

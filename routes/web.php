@@ -52,3 +52,6 @@ Route::get('/active-product/{product_id}', [ProductController::class, 'active_pr
 
 Route::post('/save-product', [ProductController::class, 'save_product']);
 Route::post('/update-product/{product_id}', [ProductController::class, 'update_product']);
+
+Route::get('/danh-muc-san-pham/{category_id}', [CategoryProduct::class, 'show_category_home']);
+Route::get('/chi-tiet-san-pham/{product_id}', [ProductController::class, 'details_product']);

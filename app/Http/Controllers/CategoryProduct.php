@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category_product;
+use App\Models\Products;
 use Illuminate\Support\Facades\Redirect;
 use Session;
 session_start();
@@ -91,5 +92,18 @@ class CategoryProduct extends Controller
         Category_product::where('category_id', $category_product_id)->delete();
         Session::put('message','Xóa danh mục sản phẩm thành công');
         return Redirect::to('all-category-product');
+    }
+
+    public function show_category_home($category_id) {
+        $category_title_page = Category_product::where('category_id', $category_id)->first();
+
+        $products = Products::where('category_id', $category_id)->get()->sortByDesc('product_id');
+        $categories = Category_product::where('category_status', '1')->get()->sortBy('category_id');
+        return view('pages.category.show_category', [
+            'categories' => $categories,
+            'products' => $products,
+            'category_title_page' => $category_title_page
+        ]);
+        // ->with('category_id',$tempt);
     }
 }

@@ -18,4 +18,13 @@ function closeEvent() {
 
 
 closeButtonMobile.addEventListener('click', closeEvent);
-    menuIcon.addEventListener('click', openEvent);
+menuIcon.addEventListener('click', openEvent);
+
+
+const userIconMobile = document.querySelector('.user-icon-mobile')
+
+userIconMobile.addEventListener('click', openEvent)
+
+const linkInfoMobile = document.querySelector('.custom-link-item__info')
+const linkSupportMobile = document.querySelector('.custom-link-item__supp')
+const signoutBtn = document.querySelector('.signout-mobile-btn')

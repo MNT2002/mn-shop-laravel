@@ -9,9 +9,12 @@
             <h1 class="form-logged-mobile__title-wrapper">
                 Xin chào
                 <span class="form-logged-mobile__title">
-                    {{-- {localStorage.getItem("UserLogging") !== null
-                                    ? JSON.parse(localStorage.getItem("UserLogging")).customer.username
-                                    : ""} --}}
+                    <?php
+                        $name = Session::get('user_name');
+                        if($name) {
+                            echo $name;
+                        }
+                        ?>
                 </span>
             </h1>
         </li>
@@ -46,18 +49,18 @@
     </ul>
 
     <ul class="custom-link">
-        {{-- <li class="custom-link-item custom-link-item__info">
-                        <span>
+        <li class="custom-link-item custom-link-item__info">
+                        <a href="#">
                             <i class="custom-link-icon fa-solid fa-user"></i>
                             Tài khoản
-                        </span>
+                        </a>
                     </li>
                     <li class="custom-link-item custom-link-item__supp">
-                        <span>
+                        <a href="#">
                             <i class="custom-link-icon fa-solid fa-envelope"></i>
                             Liên hệ hỗ trợ
-                        </span>
-                    </li> --}}
+                        </a>
+                    </li> 
         <li class="custom-link-item user-icon-mobile ">
             <a href="login-page">
                 <i class="custom-link-icon fa-solid fa-user"></i>
@@ -65,9 +68,9 @@
             </a>
         </li>
         <li class="signout-mobile-btn">
-            <span>
+            <a href="user-logout">
                 Đăng xuất
-            </span>
+            </a>
         </li>
     </ul>
 </nav>

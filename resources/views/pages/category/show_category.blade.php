@@ -21,7 +21,7 @@
 
         <div class="row">
             @foreach ($products as $product)
-            <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="col-md-6 col-lg-4 col-xl-3 product-box">
                 <div id="product-1" class="single-product">
                     <div class="part-1">
                         <img src=" {{ asset('/public/upload/product/'. $product->product_image_path) }}">
@@ -45,8 +45,10 @@
                     </div>
                     <div class="part-2">
                         <h3 class="product-title">{{ $product->product_name }}</h3>
-                        <h4 class="product-old-price">{{ number_format($product->product_price) .'.đ'}}</h4>
-                        <h4 class="product-price">{{ number_format($product->product_price) .'.đ'}}</h4>
+                        <div class="product-price-wrapper">
+                            <h4 class="product-old-price">{{ number_format($product->product_price) .'.đ'}}</h4>
+                            <h4 class="product-price">{{ number_format($product->product_price) .'.đ'}}</h4>
+                        </div>
                     </div>
                 </div>
             </div>

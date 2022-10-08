@@ -12,3 +12,7 @@ function changeImage(e) {
 }
 
 productImages.forEach(image => image.addEventListener("click", changeImage));
+
+
+
+

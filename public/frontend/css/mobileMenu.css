@@ -135,13 +135,12 @@
 .signout-mobile-btn {
     text-align: center;
     list-style: none;
-    padding: 16px 12px;
     cursor: pointer;
     -webkit-user-select: none;
     user-select: none;
     background-color: #fff;
 }
-.signout-mobile-btn span{
+.signout-mobile-btn a{
     color: var(--text-color);
     text-decoration: underline;
 }

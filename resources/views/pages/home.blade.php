@@ -164,14 +164,39 @@
     @endsection
 
     <?php
-                $messageSucces = Session::get("message_success");
-                if($messageSucces) {
-                ?>
-                  @push("scripts")
-                  <script>alert("Đăng nhập thành công")</script>
-                  @endpush
-                <?php
-                  Session::put("message_success", null);
-                }
-                ?>
+
+    $name = Session::get('user_name');
+    if($name) {
+    ?>
+        @push("scripts")
+        <script>
+            userIconMobile.style.display = 'none'
+        </script>
+        @endpush
+    <?php
+    } else {
+    ?>
+        @push("scripts")
+        <script>
+            // userIconMobile.style.display = 'none'
+            linkSupportMobile.style.display = 'none'
+            linkInfoMobile.style.display = 'none'
+            signoutBtn.style.display = 'none'
+        </script>
+        @endpush
+    <?php
+    }
+
+    $messageSucces = Session::get("message_success");
+    if($messageSucces) {
+    ?>
+        @push("scripts")
+        <script>
+            alert("Đăng nhập thành công")
+        </script>
+        @endpush
+    <?php
+        Session::put("message_success", null);
+    }
+    ?>
 @endsection

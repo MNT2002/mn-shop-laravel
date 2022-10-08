@@ -165,10 +165,12 @@ class ProductController extends Controller
     public function details_product($product_id) {
         $category_parent_page =  Products::join('tbl_category_product','tbl_product.category_id','=' ,'tbl_category_product.category_id')->where('product_id',$product_id)->first();
         $product = Products::where('product_id', $product_id)->first();
+        $products = Products::where('category_id',$category_parent_page->category_id)->get();
         $categories = Category_product::where('category_status', '1')->get()->sortBy('category_id');
         return view('pages.product.show_details', [
             'categories' => $categories,
             'product' => $product,
+            'products' => $products,
             'category_parent_page' => $category_parent_page,
         ]);
     }

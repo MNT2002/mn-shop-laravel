@@ -45,9 +45,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="productName">Giá sản phẩm</label>
+                                <label for="productName">Giá sản phẩm (VND)</label>
                                 <input type="text" name="product_price" class="form-control"
                                     id="productName" value="{{ $product->product_price }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="productName">Giảm giá (%)</label>
+                                <input type="text" name="product_discount" class="form-control"
+                                    id="productName" placeholder="" value="{{ $product->product_discount }}">
                             </div>
                             <div class="form-group">
                                 <label for="productDesc">Mô tả sản phẩm</label>

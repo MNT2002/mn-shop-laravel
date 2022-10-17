@@ -64,6 +64,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     flex: 1;
+    position: relative;
 }
 
 .section-products .single-product .part-1 {
@@ -169,6 +170,9 @@ a:hover {
     display: inline-block;
     font-size: 1.4rem;
 }
+.section-products .single-product .part-2 .product-price {
+    color: var(--text-color);
+}
 
 .product-price-wrapper {
     margin-top: auto;
@@ -191,6 +195,47 @@ a:hover {
     transform: translateY(-50%);
 }
 
+
+.home-product-item__sale-off {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 36px;
+    text-align: center;
+    background-color: rgba(255, 216, 64, 0.94);
+    border-top-right-radius: 2px; 
+    user-select: none;
+}
+
+.home-product-item__sale-off::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    border-width: 0 20px 6px;
+    border-style: solid;
+    color: rgba(255, 216, 64, 0.94);
+    border-color: transparent currentColor transparent currentColor;
+}
+
+.home-product-item__sale-off-percent {
+    color: #ee4d2d;
+    font-weight: 600;
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+    position: relative;
+    top: 0;
+}
+
+.home-product-item__sale-off-label {
+    color: var(--white-color);
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+    font-weight: 600;
+    position: relative;
+    top: -10px;
+}
 /* Mobile */
 @media (max-width: 48em) {
     /* .section-products .single-product .part-1 {

@@ -37,7 +37,22 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-12 product-info-box">
                     <h1>{{ $product->product_name }}</h1>
-                    <h2>{{ number_format($product->product_price) . '.đ' }}</h2>
+                    <div class="product-info__price-box">
+                        @if ($product->product_discount != 0)
+                            <div class="d-flex">
+                                <span
+                                    class="product-info__old-price">{{ number_format($product->product_price) . ' đ' }}</span>
+                                <h2 class="product-info__price">
+                                    {{ number_format($product->product_price - ($product->product_discount * $product->product_price) / 100) . ' đ' }}
+                                </h2>
+                                <span class="product-info__discount">{{ $product->product_discount }}% GIẢM</span>
+                            </div>
+                        @else
+                            <h2 class="product-info__price">
+                                {{ number_format($product->product_price - ($product->product_discount * $product->product_price) / 100) . ' đ' }}
+                            </h2>
+                        @endif
+                    </div>
                     <div class="description">
                         <p>{{ $product->product_desc }}</p>
 
@@ -74,9 +89,12 @@
                 </div>
             </div>
 
-        <div class="fb-share-button mt-3" data-href="http://localhost:8080/mn-shop-laravel" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ $url_canonical }}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
+            <div class="fb-share-button mt-3" data-href="http://localhost:8080/mn-shop-laravel" data-layout="button_count"
+                data-size="large"><a target="_blank"
+                    href="https://www.facebook.com/sharer/sharer.php?u={{ $url_canonical }}&amp;src=sdkpreparse"
+                    class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
 
-        <div class="fb-comments" data-href="{{ $url_canonical }}" data-width="" data-numposts="20"></div>
+            <div class="fb-comments" data-href="{{ $url_canonical }}" data-width="" data-numposts="20"></div>
             {{-- Recommend product --}}
             <div class="review">
                 <div class="header-content">
@@ -101,12 +119,21 @@
                                     alt="" />
                             </div>
                             <div class="name">{{ $recommendProduct->product_name }}</div>
-                            <div class="price">{{ number_format($recommendProduct->product_price) . '.đ' }}</div>
+                            <div class="price">
+                                {{ number_format($recommendProduct->product_price - ($recommendProduct->product_price * $recommendProduct->product_discount) / 100) . ' đ' }}
+                            </div>
                             <div class="description">{{ $recommendProduct->product_desc }}</div>
                             <a href="/mn-shop-laravel/chi-tiet-san-pham/{{ $recommendProduct->product_id }}"
                                 class="item__btn">
                                 <span>XEM SẢN PHẨM</span>
                             </a>
+                            @if ($recommendProduct->product_discount != 0)
+                                <div class="home-product-item__sale-off">
+                                    <span
+                                        class="home-product-item__sale-off-percent">{{ $recommendProduct->product_discount }}%</span>
+                                    <span class="home-product-item__sale-off-label">GIẢM</span>
+                                </div>
+                            @endif
                         </div>
                     @endforeach
                     <!-- end box -->
@@ -126,15 +153,15 @@
         @endforeach
     @endsection
 
-    @section("categories_mobile_menu")
-    @foreach ($categories as $category)
-    <li>
-        <a href="{{ URL::to("/danh-muc-san-pham/".$category->category_id) }}" class="nav__mobile-link">
-            {{ $category->category_name }}
-            <i class="fa-solid fa-angle-right icon-angle-right"></i>
-        </a>
-    </li>
-    @endforeach
+    @section('categories_mobile_menu')
+        @foreach ($categories as $category)
+            <li>
+                <a href="{{ URL::to('/danh-muc-san-pham/' . $category->category_id) }}" class="nav__mobile-link">
+                    {{ $category->category_name }}
+                    <i class="fa-solid fa-angle-right icon-angle-right"></i>
+                </a>
+            </li>
+        @endforeach
     @endsection
 
     @push('scripts')
@@ -213,22 +240,22 @@
   $name = Session::get('user_name');
     if($name) {
     ?>
-        @push("scripts")
-        <script>
-            userIconMobile.style.display = 'none'
-        </script>
-        @endpush
-    <?php
+@push('scripts')
+    <script>
+        userIconMobile.style.display = 'none'
+    </script>
+@endpush
+<?php
     } else {
     ?>
-        @push("scripts")
-        <script>
-            // userIconMobile.style.display = 'none'
-            linkSupportMobile.style.display = 'none'
-            linkInfoMobile.style.display = 'none'
-            signoutBtn.style.display = 'none'
-        </script>
-        @endpush
-    <?php
+@push('scripts')
+    <script>
+        // userIconMobile.style.display = 'none'
+        linkSupportMobile.style.display = 'none'
+        linkInfoMobile.style.display = 'none'
+        signoutBtn.style.display = 'none'
+    </script>
+@endpush
+<?php
     }
 ?>

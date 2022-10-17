@@ -44,9 +44,11 @@
                     <input type="checkbox"><i></i>
                   </label>
                 </th>
-                <th>Tên sản phẩm</th>
                 <th>Hình ảnh</th>
+                <th>Tên sản phẩm</th>
                 <th>Giá</th>
+                <th>Giảm</th>
+                <th>Thành tiền</th>
                 <th>Danh mục</th>
                 <th>Hiển thị</th>
                 <th style="width:100px;">Edit</th>
@@ -58,7 +60,6 @@
                   
               <tr>
                 <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-                <td>{{ $each_product->product_name }}</td>
                 <td>
                     @if ($each_product->product_image_path)
                     <div class="product_image-wrapper">
@@ -68,7 +69,12 @@
                     <img class="product_image" src="" alt="">
                     @endif
                 </td>
+                <td>{{ $each_product->product_name }}</td>
                 <td>{{ $each_product->product_price }}</td>
+
+                <td>{{ $each_product->product_discount }}%</td>
+                <td>{{ $each_product->product_price - ($each_product->product_price * $each_product->product_discount / 100) }}</td>
+
                 <td>{{ $each_product->category_name }}</td>
                 <td><span class="text-ellipsis">
                   <?php

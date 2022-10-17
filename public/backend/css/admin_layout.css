@@ -267,3 +267,8 @@
     height: 100%;
     object-fit: cover;
 }
+
+.table td,
+.table th {
+    text-align: center;
+}

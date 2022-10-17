@@ -31,9 +31,14 @@
                                     id="productImage">
                             </div>
                             <div class="form-group">
-                                <label for="productName">Giá sản phẩm</label>
+                                <label for="productName">Giá sản phẩm (VND)</label>
                                 <input type="text" name="product_price" class="form-control"
                                     id="productName" placeholder="Giá sản phẩm">
+                            </div>
+                            <div class="form-group">
+                                <label for="productName">Giảm giá (%)</label>
+                                <input type="text" name="product_discount" class="form-control"
+                                    id="productName" placeholder="" value="0">
                             </div>
                             <div class="form-group">
                                 <label for="productDesc">Mô tả sản phẩm</label>

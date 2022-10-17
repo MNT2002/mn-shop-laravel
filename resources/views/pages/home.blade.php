@@ -1,6 +1,6 @@
-@extends("layouts.defaultHeaderFooter")
-@section("content")
-{{-- slider --}}
+@extends('layouts.defaultHeaderFooter')
+@section('content')
+    {{-- slider --}}
     <div class="slide">
         <div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
@@ -13,24 +13,24 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="8000">
-                    <img src="{{ ("public/frontend/images/slider/slider-2.jpg") }}" class="d-block w-100" alt="...">
+                    <img src="{{ 'public/frontend/images/slider/slider-2.jpg' }}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h3>Chất lượng</h3>
-                    <p>Sản phẩm nhập khẩu từ nước ngoài với các loại chất liệu tốt</p>
+                        <p>Sản phẩm nhập khẩu từ nước ngoài với các loại chất liệu tốt</p>
                     </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="8000">
-                    <img src="{{ ("public/frontend/images/slider/slider-3.jpg") }}" class="d-block w-100" alt="...">
+                    <img src="{{ 'public/frontend/images/slider/slider-3.jpg' }}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h3>Đa dạng</h3>
-                    <p>Sản phẩm được chọn lọn với nhiều mẫu mã khác nhau </p>
+                        <p>Sản phẩm được chọn lọn với nhiều mẫu mã khác nhau </p>
                     </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="8000">
-                    <img src="{{ ("public/frontend/images/slider/slider-4.jpg") }}" class="d-block w-100" alt="...">
+                    <img src="{{ 'public/frontend/images/slider/slider-4.jpg' }}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h3>Giá rẻ</h3>
-                    <p>Sản phẩm chất lượng mà giá cả phải chăng</p>
+                        <p>Sản phẩm chất lượng mà giá cả phải chăng</p>
                     </div>
                 </div>
             </div>
@@ -65,23 +65,31 @@
                                 alt="" />
                         </div>
                         <div class="name">{{ $recommendProduct->product_name }}</div>
-                        <div class="price">{{ number_format($recommendProduct->product_price) . '.đ' }}</div>
+                        <div class="price">
+                            {{ number_format($recommendProduct->product_price - ($recommendProduct->product_price * $recommendProduct->product_discount) / 100) . ' đ' }}
+                        </div>
                         {{-- <div class="description">{{ $recommendProduct->product_desc }}</div> --}}
-                        <a href="/mn-shop-laravel/chi-tiet-san-pham/{{ $recommendProduct->product_id }}"
-                            class="item__btn">
+                        <a href="/mn-shop-laravel/chi-tiet-san-pham/{{ $recommendProduct->product_id }}" class="item__btn">
                             <span>XEM SẢN PHẨM</span>
                         </a>
+                        @if ($recommendProduct->product_discount != 0)
+                            <div class="home-product-item__sale-off">
+                                <span
+                                    class="home-product-item__sale-off-percent">{{ $recommendProduct->product_discount }}%</span>
+                                <span class="home-product-item__sale-off-label">GIẢM</span>
+                            </div>
+                        @endif
                     </div>
                 @endforeach
                 <!-- end box -->
                 ...
             </div>
         </div>
-        </div>
+    </div>
 
-        <div class="product-best-sellers__border-bottom">
-            <hr />
-        </div>
+    <div class="product-best-sellers__border-bottom">
+        <hr />
+    </div>
     </div>
 
     <div class="category-banner-block">
@@ -163,145 +171,145 @@
 
     @include('layouts.contact')
 
-    @section("categories")
+@section('categories')
     @foreach ($categories as $category)
-    <li class="menu-item">
-        <a href="{{ URL::to("/danh-muc-san-pham/".$category->category_id) }}">
-            <span class="menu-item-name">{{ $category->category_name }}</span>
-        </a>
-    </li>
+        <li class="menu-item">
+            <a href="{{ URL::to('/danh-muc-san-pham/' . $category->category_id) }}">
+                <span class="menu-item-name">{{ $category->category_name }}</span>
+            </a>
+        </li>
     @endforeach
-    @endsection
+@endsection
 
-    @section("categories_mobile_menu")
+@section('categories_mobile_menu')
     @foreach ($categories as $category)
-    <li>
-        <a href="{{ URL::to("/danh-muc-san-pham/".$category->category_id) }}" class="nav__mobile-link">
-            {{ $category->category_name }}
-            <i class="fa-solid fa-angle-right icon-angle-right"></i>
-        </a>
-    </li>
+        <li>
+            <a href="{{ URL::to('/danh-muc-san-pham/' . $category->category_id) }}" class="nav__mobile-link">
+                {{ $category->category_name }}
+                <i class="fa-solid fa-angle-right icon-angle-right"></i>
+            </a>
+        </li>
     @endforeach
-    @endsection
+@endsection
 
-    <?php
+<?php
 
     $name = Session::get('user_name');
     if($name) {
     ?>
-        @push("scripts")
-        <script>
-            userIconMobile.style.display = 'none'
-        </script>
-        @endpush
-    <?php
+@push('scripts')
+    <script>
+        userIconMobile.style.display = 'none'
+    </script>
+@endpush
+<?php
     } else {
     ?>
-        @push("scripts")
-        <script>
-            // userIconMobile.style.display = 'none'
-            linkSupportMobile.style.display = 'none'
-            linkInfoMobile.style.display = 'none'
-            signoutBtn.style.display = 'none'
-        </script>
-        @endpush
-    <?php
+@push('scripts')
+    <script>
+        // userIconMobile.style.display = 'none'
+        linkSupportMobile.style.display = 'none'
+        linkInfoMobile.style.display = 'none'
+        signoutBtn.style.display = 'none'
+    </script>
+@endpush
+<?php
     }
 
     $messageSucces = Session::get("message_success");
     if($messageSucces) {
     ?>
-        @push("scripts")
-        <script>
-            alert("Đăng nhập thành công")
-        </script>
-        @endpush
-    <?php
+@push('scripts')
+    <script>
+        alert("Đăng nhập thành công")
+    </script>
+@endpush
+<?php
         Session::put("message_success", null);
     }
     ?>
 
-    <?php
+<?php
     $messageSuccesSignUp = Session::get("message_success_signUP");
     if($messageSuccesSignUp) {
     ?>
-        @push("scripts")
-        <script>
-            alert("Đăng kí thành công")
-        </script>
-        @endpush
-    <?php
+@push('scripts')
+    <script>
+        alert("Đăng kí thành công")
+    </script>
+@endpush
+<?php
         Session::put("message_success_signUP", null);
     }
     ?>
-     @push('scripts')
-     <script>
-         // recommend product
-         const reviewDiv = document.querySelector('.product-best-seller-wrapper');
-         const wrapperBox = document.querySelector('.review-box');
-         const listBox = document.querySelectorAll('.box');
-         const btnLeft = document.querySelector('.btnLeft');
-         const btnRight = document.querySelector('.btnRight');
+@push('scripts')
+    <script>
+        // recommend product
+        const reviewDiv = document.querySelector('.product-best-seller-wrapper');
+        const wrapperBox = document.querySelector('.review-box');
+        const listBox = document.querySelectorAll('.box');
+        const btnLeft = document.querySelector('.btnLeft');
+        const btnRight = document.querySelector('.btnRight');
 
-         document.addEventListener("DOMContentLoaded", () => {
-             // responsive
-             window.addEventListener("resize", function() {
-                 if (window.innerWidth >= 1024) {
-                     make_slide(3)
-                 } else if (window.innerWidth >= 740) {
-                     make_slide(2)
-                 } else {
-                     make_slide(1);
-                 }
-             })
+        document.addEventListener("DOMContentLoaded", () => {
+            // responsive
+            window.addEventListener("resize", function() {
+                if (window.innerWidth >= 1024) {
+                    make_slide(3)
+                } else if (window.innerWidth >= 740) {
+                    make_slide(2)
+                } else {
+                    make_slide(1);
+                }
+            })
 
-             const media = [
-                 window.matchMedia('(min-width: 1024px)'),
-                 window.matchMedia('(min-width: 740px)'),
-             ]
+            const media = [
+                window.matchMedia('(min-width: 1024px)'),
+                window.matchMedia('(min-width: 740px)'),
+            ]
 
-             if (media[0].matches) {
-                 make_slide(4)
-             } else if (media[1].matches) {
-                 make_slide(2)
-             } else {
-                 make_slide(1)
-             }
+            if (media[0].matches) {
+                make_slide(4)
+            } else if (media[1].matches) {
+                make_slide(2)
+            } else {
+                make_slide(1)
+            }
 
-         });
+        });
 
-         function make_slide(amountSLideAppear) {
-             const widthItem = reviewDiv.offsetWidth / amountSLideAppear;
+        function make_slide(amountSLideAppear) {
+            const widthItem = reviewDiv.offsetWidth / amountSLideAppear;
 
-             let widthAllBox = widthItem * listBox.length; //Chiều dài của toàn bộ item
-             wrapperBox.style.width = `${widthAllBox}px`;
+            let widthAllBox = widthItem * listBox.length; //Chiều dài của toàn bộ item
+            wrapperBox.style.width = `${widthAllBox}px`;
 
-             listBox.forEach(element => {
-                 element.style.marginRight = '10px';
-                 element.style.marginLeft = '10px';
-                 element.style.width = `${widthItem - 20}px`
-             })
+            listBox.forEach(element => {
+                element.style.marginRight = '10px';
+                element.style.marginLeft = '10px';
+                element.style.width = `${widthItem - 20}px`
+            })
 
-             // Xử lí slide button
-             let count = 0;
-             let spacing = widthAllBox - widthItem * amountSLideAppear;
-             btnRight.addEventListener('click', function() {
-                 count += widthItem;
+            // Xử lí slide button
+            let count = 0;
+            let spacing = widthAllBox - widthItem * amountSLideAppear;
+            btnRight.addEventListener('click', function() {
+                count += widthItem;
 
-                 if (count > spacing) {
-                     count = 0
-                 }
-                 wrapperBox.style.transform = `translateX(${-count}px)`
-             })
-             btnLeft.addEventListener('click', function() {
-                 count -= widthItem;
+                if (count > spacing) {
+                    count = 0
+                }
+                wrapperBox.style.transform = `translateX(${-count}px)`
+            })
+            btnLeft.addEventListener('click', function() {
+                count -= widthItem;
 
-                 if (count < 0) {
-                     count = spacing
-                 }
-                 wrapperBox.style.transform = `translateX(${-count}px)`
-             })
-         }
-     </script>
- @endpush
+                if (count < 0) {
+                    count = spacing
+                }
+                wrapperBox.style.transform = `translateX(${-count}px)`
+            })
+        }
+    </script>
+@endpush
 @endsection

@@ -37,9 +37,36 @@
     text-overflow: ellipsis;
     word-break: break-word;
 }
-.product-info-box h2 {
+.product-info__price-box {
+    margin-bottom: 8px;
+}
+.product-info__price-box .product-info__old-price {
+    font-size: 1.4rem;
+    text-decoration: line-through;
+    color: #929292;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+.product-info__price-box .product-info__price {
+    display: inline-block;
     font-size: 20px;
-
+    color: var(--text-color);
+    margin: 0;
+}
+.product-info__discount {
+    margin-left: 15px;
+    font-size: 1rem;
+    color: #fff;
+    text-transform: uppercase;
+    background: #ee4d2d;
+    border-radius: 2px;
+    padding: 2px 6px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
 }
 
 .pull-left span {
@@ -175,7 +202,7 @@
 }
 .review-box{
     display: flex;
-    overflow: hidden;
+    /* overflow: hidden; */
     transition: transform 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 .box{
@@ -188,6 +215,7 @@
     display: flex;
     flex-direction: column;
     background-color: #fff;
+    position: relative;
 }
 .image{
     position: relative;

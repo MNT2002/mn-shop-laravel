@@ -57,6 +57,7 @@ class ProductController extends Controller
         $data = array();
         $data['product_name'] = $request->product_name;
         $data['product_price'] = $request->product_price;
+        $data['product_discount'] = $request->product_discount;
         $data['product_desc'] = $request->product_desc;
         $data['category_id'] = $request->product_category;
         $data['product_status'] = $request->product_status;
@@ -105,7 +106,7 @@ class ProductController extends Controller
     public function update_product(Request $request, $product_id) {
         $this->AuthLogin();
         $request->validate([
-            'product_name' => 'required|min:2|unique:tbl_product,product_name',
+            'product_name' => 'required|min:2',
             'product_price' => 'required',
             'product_desc' => 'required',
             'product_image' => 'mimes:jpg,png,jpeg|max:5048',
@@ -128,6 +129,7 @@ class ProductController extends Controller
         $data = array();
         $data['product_name'] = $request->product_name;
         $data['product_price'] = $request->product_price;
+        $data['product_discount'] = $request->product_discount;
         $data['product_desc'] = $request->product_desc;
         $data['category_id'] = $request->product_category;
         $data['product_status'] = $request->product_status;

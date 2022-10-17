@@ -43,10 +43,19 @@
                     <div class="part-2">
                         <h3 class="product-title">{{ $product->product_name }}</h3>
                         <div class="product-price-wrapper">
-                            <h4 class="product-old-price">{{ number_format($product->product_price) .'.đ'}}</h4>
-                            <h4 class="product-price">{{ number_format($product->product_price) .'.đ'}}</h4>
+                            @if ($product->product_discount != 0)
+                            <h4 class="product-old-price">{{ number_format($product->product_price) .' đ'}}</h4>
+                            @endif
+                            <h4 class="product-price">{{ number_format($product->product_price - ($product->product_price * $product->product_discount / 100)) .' đ'}}</h4>
                         </div>
                     </div>
+
+                    @if ($product->product_discount != 0)
+                    <div class="home-product-item__sale-off">
+                        <span class="home-product-item__sale-off-percent">{{ $product->product_discount }}%</span>
+                        <span class="home-product-item__sale-off-label">GIẢM</span>
+                    </div>
+                    @endif
                 </div>
             </div>
             @endforeach

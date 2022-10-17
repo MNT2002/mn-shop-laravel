@@ -100,6 +100,41 @@
                 </a>
             </li>
         @endforeach
-    @endsection
+@endsection
+
+@section("categories_mobile_menu")
+@foreach ($categories as $category)
+<li>
+    <a href="{{ URL::to("/danh-muc-san-pham/".$category->category_id) }}" class="nav__mobile-link">
+        {{ $category->category_name }}
+        <i class="fa-solid fa-angle-right icon-angle-right"></i>
+    </a>
+</li>
+@endforeach
+@endsection
 
 @endsection
+
+<?php
+  $name = Session::get('user_name');
+    if($name) {
+    ?>
+        @push("scripts")
+        <script>
+            userIconMobile.style.display = 'none'
+        </script>
+        @endpush
+    <?php
+    } else {
+    ?>
+        @push("scripts")
+        <script>
+            // userIconMobile.style.display = 'none'
+            linkSupportMobile.style.display = 'none'
+            linkInfoMobile.style.display = 'none'
+            signoutBtn.style.display = 'none'
+        </script>
+        @endpush
+    <?php
+    }
+?>

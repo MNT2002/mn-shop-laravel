@@ -10,9 +10,11 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\UsersController;
 
-// Fronend
+// Frontend
 Route::get('/', [PagesController::class, 'index']);
 // Route::get('/trangchu', [PagesController::class, 'index']);
+Route::post('/tim-kiem',[PagesController::class, 'search']);
+
 Route::get('/login-page',[userController::class, 'index']);
 Route::get('/sign-up-page',[userController::class, 'sign_up_index']);
 Route::post('/user-login',[userController::class, 'login']);

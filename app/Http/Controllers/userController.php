@@ -13,18 +13,41 @@ session_start();
 
 class userController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        //Seo
+        $meta_desc = "";
+        $meta_keywords = "Đăng nhập MN Shop, dang nhap mn shop";
+        $meta_title = "Đăng nhập";
+        $url_canonical = $request->url();
+        //--Seo
+
         $categories = Category_product::where('category_status', '1')->get()->sortBy('category_id');
         return view('pages.login_page', [
             'categories' => $categories,
+
+            'meta_desc' => $meta_desc,
+            'meta_keywords' => $meta_keywords,
+            'meta_title' => $meta_title,
+            'url_canonical' => $url_canonical,
         ]);
     }
-    public function sign_up_index()
+    public function sign_up_index(Request $request)
     {
+        //Seo
+        $meta_desc = "";
+        $meta_keywords = "Đăng kí MN Shop, dang ki mn shop";
+        $meta_title = "Đăng kí";
+        $url_canonical = $request->url();
+        //--Seo
         $categories = Category_product::where('category_status', '1')->get()->sortBy('category_id');
         return view('pages.sign_up_page', [
             'categories' => $categories,
+
+            'meta_desc' => $meta_desc,
+            'meta_keywords' => $meta_keywords,
+            'meta_title' => $meta_title,
+            'url_canonical' => $url_canonical,
         ]);
     }
     public function login(Request $request)
@@ -86,7 +109,7 @@ class userController extends Controller
         Session::put('user_name', $user->name);
         Session::put('user_id', $user->name);
         Session::put('user_level', $user->quyen);
-        Session::put('message_success', 'Đăng kí thành công');
+        Session::put('message_success_signUP', 'Đăng kí thành công');
         $user->save();
         return redirect('/'); 
         // same

@@ -4,6 +4,21 @@
     flex-direction: column;
     text-align: center;
     padding: 2vw 4vw;
+    position: relative;
+}
+.btn-next {
+    right: 14px !important;
+}
+.btn-prev {
+    left: 14px !important;
+}
+.image {
+    width: 200px !important;
+    height: 200px !important;
+}
+.image:hover img {
+    transform: scale(1.15);
+    transition: all 1s ease 0s;
 }
 
 .product-best-sellers__title {
@@ -34,7 +49,7 @@
     position: relative;
     display: inline-block;
     margin: 16px 0;
-    padding: 0 16px;
+    padding: 4px 16px;
     background-color: #fff;
 }
 
@@ -103,7 +118,7 @@
 
 .item__btn {
     min-width: 172px;
-    margin-top: 18px;
+    margin-top: 8px;
     margin-left: auto;
     margin-right: auto;
     font-size: 1.2rem;
@@ -150,8 +165,8 @@
 .product-best-sellers__border-bottom hr {
     position: absolute;
     top: 0;
-    left: -16px;
-    right: -16px;
+    left: 0;
+    right: 0;
     border: 0;
     border-top: 1px solid var(--text-color);
     margin: 34px 0 0;

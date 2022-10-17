@@ -49,24 +49,34 @@
         <div class="product-best-sellers__title">
             <h3>SẢN PHẨM MỚI NHẤT</h3>
         </div>
+        <div class="btn-next">
+            <i class="fas btn fa-chevron-right btnRight"></i>
+        </div>
+        <div class="btn-prev">
+            <i class="fas btn fa-chevron-left btnLeft"></i>
+        </div>
 
         <div class="row p-0 m-0 product-best-seller-wrapper">
-            @foreach ($products as $product)
-            <div class="product-best-sellers__item col-6 col-md-4 col-lg-3">
-                <a href="" class="product-best-sellers__link">
-                    <div class="item__img-wrap">
-                        <img src="{{ asset('/public/upload/product/'. $product->product_image_path) }}" alt="" class="item__img" />
+            <div class="review-box">
+                @foreach ($newProducts as $recommendProduct)
+                    <div class="box">
+                        <div class="image">
+                            <img src="{{ asset('/public/upload/product/' . $recommendProduct->product_image_path) }}"
+                                alt="" />
+                        </div>
+                        <div class="name">{{ $recommendProduct->product_name }}</div>
+                        <div class="price">{{ number_format($recommendProduct->product_price) . '.đ' }}</div>
+                        {{-- <div class="description">{{ $recommendProduct->product_desc }}</div> --}}
+                        <a href="/mn-shop-laravel/chi-tiet-san-pham/{{ $recommendProduct->product_id }}"
+                            class="item__btn">
+                            <span>XEM SẢN PHẨM</span>
+                        </a>
                     </div>
-                    <div class="item__name-wrap">
-                        <h3 class="item__name">{{ $product->product_name }}</h3>
-                        <span class="item__price">{{ number_format($product->product_price) .'.đ'  }}</span>
-                    </div>
-                    <button class="item__btn">
-                        <span>XEM SẢN PHẨM</span>
-                    </button>
-                </a>
+                @endforeach
+                <!-- end box -->
+                ...
             </div>
-            @endforeach
+        </div>
         </div>
 
         <div class="product-best-sellers__border-bottom">
@@ -163,6 +173,17 @@
     @endforeach
     @endsection
 
+    @section("categories_mobile_menu")
+    @foreach ($categories as $category)
+    <li>
+        <a href="{{ URL::to("/danh-muc-san-pham/".$category->category_id) }}" class="nav__mobile-link">
+            {{ $category->category_name }}
+            <i class="fa-solid fa-angle-right icon-angle-right"></i>
+        </a>
+    </li>
+    @endforeach
+    @endsection
+
     <?php
 
     $name = Session::get('user_name');
@@ -199,4 +220,88 @@
         Session::put("message_success", null);
     }
     ?>
+
+    <?php
+    $messageSuccesSignUp = Session::get("message_success_signUP");
+    if($messageSuccesSignUp) {
+    ?>
+        @push("scripts")
+        <script>
+            alert("Đăng kí thành công")
+        </script>
+        @endpush
+    <?php
+        Session::put("message_success_signUP", null);
+    }
+    ?>
+     @push('scripts')
+     <script>
+         // recommend product
+         const reviewDiv = document.querySelector('.product-best-seller-wrapper');
+         const wrapperBox = document.querySelector('.review-box');
+         const listBox = document.querySelectorAll('.box');
+         const btnLeft = document.querySelector('.btnLeft');
+         const btnRight = document.querySelector('.btnRight');
+
+         document.addEventListener("DOMContentLoaded", () => {
+             // responsive
+             window.addEventListener("resize", function() {
+                 if (window.innerWidth >= 1024) {
+                     make_slide(3)
+                 } else if (window.innerWidth >= 740) {
+                     make_slide(2)
+                 } else {
+                     make_slide(1);
+                 }
+             })
+
+             const media = [
+                 window.matchMedia('(min-width: 1024px)'),
+                 window.matchMedia('(min-width: 740px)'),
+             ]
+
+             if (media[0].matches) {
+                 make_slide(4)
+             } else if (media[1].matches) {
+                 make_slide(2)
+             } else {
+                 make_slide(1)
+             }
+
+         });
+
+         function make_slide(amountSLideAppear) {
+             const widthItem = reviewDiv.offsetWidth / amountSLideAppear;
+
+             let widthAllBox = widthItem * listBox.length; //Chiều dài của toàn bộ item
+             wrapperBox.style.width = `${widthAllBox}px`;
+
+             listBox.forEach(element => {
+                 element.style.marginRight = '10px';
+                 element.style.marginLeft = '10px';
+                 element.style.width = `${widthItem - 20}px`
+             })
+
+             // Xử lí slide button
+             let count = 0;
+             let spacing = widthAllBox - widthItem * amountSLideAppear;
+             btnRight.addEventListener('click', function() {
+                 count += widthItem;
+
+                 if (count > spacing) {
+                     count = 0
+                 }
+                 wrapperBox.style.transform = `translateX(${-count}px)`
+             })
+             btnLeft.addEventListener('click', function() {
+                 count -= widthItem;
+
+                 if (count < 0) {
+                     count = spacing
+                 }
+                 wrapperBox.style.transform = `translateX(${-count}px)`
+             })
+         }
+     </script>
+ @endpush
 @endsection

@@ -19,6 +19,7 @@ function closeEvent() {
 
 closeButtonMobile.addEventListener('click', closeEvent);
 menuIcon.addEventListener('click', openEvent);
+navOverlay.addEventListener('click', closeEvent);
 
 
 const userIconMobile = document.querySelector('.user-icon-mobile')

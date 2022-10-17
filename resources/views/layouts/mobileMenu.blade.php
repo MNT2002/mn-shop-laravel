@@ -18,34 +18,11 @@
                 </span>
             </h1>
         </li>
-        {{-- {/* Áo thun  */} --}}
-        <li>
-            <a href="/aothun" class="nav__mobile-link">
-                áo thun
-                <i class="fa-solid fa-angle-right icon-angle-right"></i>
-            </a>
-        </li>
-        {{-- {/* Áo sơ mi */} --}}
-        <li>
-            <a href="" class="nav__mobile-link">
-                Áo sơ mi
-                <i class="fa-solid fa-angle-right icon-angle-right"></i>
-            </a>
-        </li>
-        {{-- {/* Áo khoác Jeans */} --}}
-        <li>
-            <a href="" class="nav__mobile-link">
-                Áo khoác Jeans
-                <i class="fa-solid fa-angle-right icon-angle-right"></i>
-            </a>
-        </li>
-        {{-- {/* Phu kien */} --}}
-        <li>
-            <a href="" class="nav__mobile-link">
-                PHỤ KIỆN
-                <i class="fa-solid fa-angle-right icon-angle-right"></i>
-            </a>
-        </li>
+        
+        @section('categories_mobile_menu')
+                
+        @show
+        
     </ul>
 
     <ul class="custom-link">
@@ -62,10 +39,10 @@
                         </a>
                     </li> 
         <li class="custom-link-item user-icon-mobile ">
-            <a href="login-page">
+            <a href="{{ URL::to("/login-page")}}">
                 <i class="custom-link-icon fa-solid fa-user"></i>
-                Tài khoản
-            </a>
+                Tài khoản</a>
+            
         </li>
         <li class="signout-mobile-btn">
             <a href="user-logout">

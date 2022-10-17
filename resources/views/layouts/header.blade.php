@@ -44,7 +44,8 @@
                 if ($name) {
                     echo '<a class="header__navbar-item-user-link" href="\mn-shop-laravel/login-page"><i class="fa-solid fa-user"></i></a>';
                 } else {
-                    echo '<a href="\mn-shop-laravel/login-page"><i class="fa-solid fa-user"></i></a>';
+                    echo '<a href="'?>{{ URL::to("/login-page")}}"><i class="fa-solid fa-user"></i></a>
+                <?php
                 }
                 ?>
             </li>
@@ -52,14 +53,18 @@
             @include('layouts.formUser')
 
             <li class="header__navbar-item header__navbar-item-search">
-                <form class="form-mini-search" action="">
+                <form class="form-mini-search" action="{{ URL::to('/tim-kiem') }}" method="POST">
+                    @csrf
                     <div class="search-button-wrap">
-                        <div class="search-button">
+                        <div class="search-button-icon">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
+                        <button type="submit" class="search-button search-button-link">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
                     </div>
                     <div class="search-input-wrap">
-                        <input type="text" placeholder="Tìm kiếm sản phẩm..." />
+                        <input name="search_keywords" type="text" placeholder="Tìm kiếm sản phẩm..." />
                     </div>
                     <div class="js-close-button close-button-wrap">
                         <div class="close-button-icon">

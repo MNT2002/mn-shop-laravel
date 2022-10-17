@@ -49,12 +49,11 @@ class AdminController extends Controller
                 Session::put('admin_name', $admin->name);
                 Session::put('admin_id', $admin->id);
                 Session::put('admin_image_path', $admin->image_path);
+                return Redirect::to('/dashboard');
             } else {
                 Session::put('message', 'Tài khoản của bạn không đủ quyền truy cập');
                 return Redirect::to('/admin');
             }
-
-            return Redirect::to('/dashboard');
         } else {
             Session::put('message', 'Tài khoản hoặc mật khẩu không chính xác!');
             return Redirect::to('/admin');

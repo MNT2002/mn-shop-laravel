@@ -21,7 +21,7 @@
             <div class="product row p-0 m-0">
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="product-gallery">
-                        <div class="product-image d-none d-md-block d-lg-block">
+                        <div class="product-image">
                             <img class="active" src="{{ asset('/public/upload/product/' . $product->product_image_path) }}">
                         </div>
                         <ul class="image-list p-0 m-0">
@@ -67,33 +67,16 @@
                         </select>
                         <a class="add-to-cart" href="#">
                             <i class="fa fa-shopping-cart"></i>
-                            Thêm vào giỏ hàng
+                            Thêm giỏ hàng
                         </a>
                         <div class="clearfix"></div>
                     </div>
                 </div>
             </div>
-            {{-- <div class="grid related-products">
-            <div class="column-xs-12">
-                <h3>You may also like</h3>
-            </div>
-            <div class="column-xs-12 column-md-4">
-                <img src="https://source.unsplash.com/miziNqvJx5M">
-                <h4>Succulent</h4>
-                <p class="price">$19.99</p>
-            </div>
-            <div class="column-xs-12 column-md-4">
-                <img src="https://source.unsplash.com/2y6s0qKdGZg">
-                <h4>Terranium</h4>
-                <p class="price">$19.99</p>
-            </div>
-            <div class="column-xs-12 column-md-4">
-                <img src="https://source.unsplash.com/6Rs76hNbIWE">
-                <h4>Cactus</h4>
-                <p class="price">$19.99</p>
-            </div>
-        </div> --}}
 
+        <div class="fb-share-button mt-3" data-href="http://localhost:8080/mn-shop-laravel" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ $url_canonical }}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
+
+        <div class="fb-comments" data-href="{{ $url_canonical }}" data-width="" data-numposts="20"></div>
             {{-- Recommend product --}}
             <div class="review">
                 <div class="header-content">
@@ -127,7 +110,6 @@
                         </div>
                     @endforeach
                     <!-- end box -->
-                    ...
                 </div>
             </div>
         </div>
@@ -143,6 +125,18 @@
             </li>
         @endforeach
     @endsection
+
+    @section("categories_mobile_menu")
+    @foreach ($categories as $category)
+    <li>
+        <a href="{{ URL::to("/danh-muc-san-pham/".$category->category_id) }}" class="nav__mobile-link">
+            {{ $category->category_name }}
+            <i class="fa-solid fa-angle-right icon-angle-right"></i>
+        </a>
+    </li>
+    @endforeach
+    @endsection
+
     @push('scripts')
         <script>
             // recommend product
@@ -214,3 +208,27 @@
         </script>
     @endpush
 @endsection
+
+<?php
+  $name = Session::get('user_name');
+    if($name) {
+    ?>
+        @push("scripts")
+        <script>
+            userIconMobile.style.display = 'none'
+        </script>
+        @endpush
+    <?php
+    } else {
+    ?>
+        @push("scripts")
+        <script>
+            // userIconMobile.style.display = 'none'
+            linkSupportMobile.style.display = 'none'
+            linkInfoMobile.style.display = 'none'
+            signoutBtn.style.display = 'none'
+        </script>
+        @endpush
+    <?php
+    }
+?>

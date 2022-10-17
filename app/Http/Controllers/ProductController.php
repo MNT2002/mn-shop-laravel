@@ -162,16 +162,29 @@ class ProductController extends Controller
     }
     //End Admin page
 
-    public function details_product($product_id) {
+    public function details_product($product_id, Request $request) {
         $category_parent_page =  Products::join('tbl_category_product','tbl_product.category_id','=' ,'tbl_category_product.category_id')->where('product_id',$product_id)->first();
         $product = Products::where('product_id', $product_id)->first();
-        $products = Products::where('category_id',$category_parent_page->category_id)->get();
+
+        //Seo
+        $meta_desc = $product->product_desc;
+        $meta_keywords = $category_parent_page->meta_keywords;
+        $meta_title = $product->product_name;
+        $url_canonical = $request->url();
+        //--Seo
+        
+        $products = Products::where('category_id',$category_parent_page->category_id)->whereNotIn('tbl_product.product_id',[$product_id])->get();
         $categories = Category_product::where('category_status', '1')->get()->sortBy('category_id');
         return view('pages.product.show_details', [
             'categories' => $categories,
             'product' => $product,
             'products' => $products,
             'category_parent_page' => $category_parent_page,
+            
+            'meta_desc' => $meta_desc,
+            'meta_keywords' => $meta_keywords,
+            'meta_title' => $meta_title,
+            'url_canonical' => $url_canonical,
         ]);
     }
 }

@@ -31,6 +31,10 @@
                                     placeholder="Mô tả danh mục"></textarea>
                             </div>
                             <div class="form-group">
+                                <label for="categoryProductDesc">Từ khóa danh mục</label>
+                                <textarea style="resize: none" rows="2" name="category_product_keywords" class="form-control" id="categoryProductDesc"></textarea>
+                            </div>
+                            <div class="form-group">
                                 <label for="">Hiển thị</label>
                                 <select name="category_product_status" class="form-control ">
                                     <option value="0">Ẩn</option>

@@ -53,7 +53,7 @@
                 <a href="">Liên hệ</a>
             </li>
         </div>
-        <div class="col-lg-4 col-md-6 footer-col">
+        <div class="col-lg-4 col-md-12 footer-col">
             <h3>hỗ trợ </h3>
             <li>
                 <a href="">Hỏi đáp</a>

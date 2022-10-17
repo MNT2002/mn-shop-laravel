@@ -27,4 +27,5 @@ body {
     font-weight: 500;
     font-size: 1.6rem;
     text-rendering: optimizeSpeed;
+    background-color: #f9f9f9;
 }

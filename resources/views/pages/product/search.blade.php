@@ -1,23 +1,15 @@
 @extends("layouts.defaultHeaderFooter")
 @section("content")
-
 <section class="section-products">
-    <div class="inner-header">
-        <div class="pull-left">
-            <div>
-                <a href="/mn-shop-laravel">Trang chủ</a>
-                /
-                <span>{{ $category_title_page->category_name }}</span>
-            </div>
-        </div>
-        <div class="pull-right">
-            <h3 class="product-title">{{ $category_title_page->category_name }}</h3>
+    <div class="product-best-sellers">
+        <div class="product-best-sellers__title">
+            <h3>KẾT QUẢ TÌM KIẾM</h3>
         </div>
     </div>
     <div class="container">
 
         <div class="row">
-            @foreach ($products as $product)
+            @foreach ($search_products as $product)
             <div class="col-md-6 col-lg-4 col-xl-3 product-box">
                 <div id="product-1" class="single-product">
                     <div class="part-1">
@@ -50,24 +42,22 @@
                 </div>
             </div>
             @endforeach
-            {{-- {{ $products->links() }} --}}
 
         </div>
     </div>
 </section>
 
-@include('layouts.contact')
+    @section("categories")
+    @foreach ($categories as $category)
+    <li class="menu-item">
+        <a href="{{ URL::to("/danh-muc-san-pham/".$category->category_id) }}">
+            <span class="menu-item-name">{{ $category->category_name }}</span>
+        </a>
+    </li>
+    @endforeach
+    @endsection
 
-@section("categories")
-@foreach ($categories as $category)
-<li class="menu-item">
-    <a href="{{ URL::to("/danh-muc-san-pham/".$category->category_id) }}">
-        <span class="menu-item-name">{{ $category->category_name }}</span>
-    </a>
-</li>
-@endforeach
-@endsection
-@section("categories_mobile_menu")
+    @section("categories_mobile_menu")
     @foreach ($categories as $category)
     <li>
         <a href="{{ URL::to("/danh-muc-san-pham/".$category->category_id) }}" class="nav__mobile-link">
@@ -78,10 +68,9 @@
     @endforeach
     @endsection
 
-@endsection
+    <?php
 
-<?php
-  $name = Session::get('user_name');
+    $name = Session::get('user_name');
     if($name) {
     ?>
         @push("scripts")
@@ -102,4 +91,6 @@
         @endpush
     <?php
     }
-?>
+
+    ?>
+@endsection

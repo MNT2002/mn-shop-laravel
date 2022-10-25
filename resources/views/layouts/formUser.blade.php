@@ -32,7 +32,7 @@
 
         <ul class="sign-out-box">
             <li class="sign-out-btn">
-                <a href="user-logout">Đăng xuất</a>
+                <a href="{{ URL::to('/user-logout') }}">Đăng xuất</a>
             </li>
         </ul>
     </nav>

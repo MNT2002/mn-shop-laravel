@@ -28,7 +28,7 @@
         </div>
 
         <div class="header__logo">
-            <a href=" /mn-shop-laravel">MN Shop</a>
+            <a href="{{ URL::to('/') }}">MN Shop</a>
         </div>
 
         <ul class="header__navbar-list flex-right justify-content-end">

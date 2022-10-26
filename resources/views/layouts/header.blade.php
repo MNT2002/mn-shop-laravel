@@ -33,7 +33,7 @@
 
         <ul class="header__navbar-list flex-right justify-content-end">
             <li class="header__navbar-item cart-icon">
-                <a class="cart-link" href="#">
+                <a class="cart-link" href="{{ URL::to('/show_cart') }}">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
             </li>

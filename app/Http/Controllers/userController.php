@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\Users;
 use Session;
 use App\Models\Category_product;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 session_start();
 
@@ -120,6 +121,8 @@ class userController extends Controller
         Session::put('user_name', null);
         Session::put('user_id', null);
         Session::put('user_level', null);
+        Cart::destroy();
         return Redirect::to('/');
+       
     }
 }

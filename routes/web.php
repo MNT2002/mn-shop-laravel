@@ -10,7 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\UsersController;
 
-// Frontend
+// ----------Frontend----------
 Route::get('/', [PagesController::class, 'index']);
 // Route::get('/trangchu', [PagesController::class, 'index']);
 Route::post('/tim-kiem',[PagesController::class, 'search']);
@@ -21,8 +21,11 @@ Route::post('/user-login',[userController::class, 'login']);
 Route::post('/user-sign-up',[userController::class, 'sign_up']);
 Route::get('/user-logout',[userController::class, 'logout']);
 
+Route::get('/danh-muc-san-pham/{category_id}', [CategoryProduct::class, 'show_category_home']);
+Route::get('/chi-tiet-san-pham/{product_id}', [ProductController::class, 'details_product']);
 
-// Backend
+
+// ----------Backend----------
 Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/dashboard', [AdminController::class, 'show_admin_dashboard']);
 Route::get('/logout', [AdminController::class, 'logout']);
@@ -54,6 +57,3 @@ Route::get('/active-product/{product_id}', [ProductController::class, 'active_pr
 
 Route::post('/save-product', [ProductController::class, 'save_product']);
 Route::post('/update-product/{product_id}', [ProductController::class, 'update_product']);
-
-Route::get('/danh-muc-san-pham/{category_id}', [CategoryProduct::class, 'show_category_home']);
-Route::get('/chi-tiet-san-pham/{product_id}', [ProductController::class, 'details_product']);

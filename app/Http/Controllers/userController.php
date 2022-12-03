@@ -44,7 +44,6 @@ class userController extends Controller
         $categories = Category_product::where('category_status', '1')->get()->sortBy('category_id');
         return view('pages.sign_up_page', [
             'categories' => $categories,
-
             'meta_desc' => $meta_desc,
             'meta_keywords' => $meta_keywords,
             'meta_title' => $meta_title,

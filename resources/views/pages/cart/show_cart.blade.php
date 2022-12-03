@@ -76,9 +76,12 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td>    <p>SubTotal:{{ number_format($subtotal).''.'VNĐ' }}</p></td>
+                    <td>    <p>SubTotal: {{ number_format($subtotal).' '.'VNĐ' }}</p>
+                    </td>
+                    <td>
+                    <a href="#"><Button>Thanh Toán</Button></a>
+                    </td>
                    </tr>
-                </tbody>
             </table>
         </div>
     </div>

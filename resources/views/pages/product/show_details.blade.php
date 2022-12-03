@@ -58,17 +58,20 @@
 
                     </div>
                     <p>Tùy chọn:</p>
+                    <form action="{{ URL::to ('/save-cart') }}" method="POST">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="productid_hidden"value="{{ $product->product_id }}">
                     <div class="single-item-options">
-                        <select class="wc-select" name="size">
-                            <option>Size</option>
+                        <p>Size:</p>
+                        <select class="wc-select" name="size" value="XS">
                             <option value="XS">XS</option>
                             <option value="S">S</option>
                             <option value="M">M</option>
                             <option value="L">L</option>
                             <option value="XL">XL</option>
                         </select>
-                        <select class="wc-select" name="color">
-                            <option>Số lượng</option>
+                        <p>Số lượng</p>
+                        <select class="wc-select" name="qty" value="1">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -80,10 +83,13 @@
                             <option value="9">9</option>
                             <option value="10">10</option>
                         </select>
-                        <a class="add-to-cart" href="#">
+                        <button type="submit"class="add-to-cart">
+                        
                             <i class="fa fa-shopping-cart"></i>
                             Thêm giỏ hàng
-                        </a>
+                       
+                    </button>
+                </form>
                         <div class="clearfix"></div>
                     </div>
                 </div>

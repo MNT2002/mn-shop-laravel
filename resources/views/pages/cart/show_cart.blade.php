@@ -39,7 +39,7 @@
                                 <h4><a href="">{{ $v_content->name }}</a></h4>
                             </td>
                             <td class="cart_price">
-                                <p>{{number_format( $v_content->price )}} VNĐ</p>
+                                <p>{{number_format( $v_content->price )}} đ</p>
                         </td>
                         <td class="prd_size">
                             <p>{{ $v_content->options->size }}</p>
@@ -74,7 +74,11 @@
                         </form>
                         </td>
                         <td class="cart_total">
+<<<<<<< HEAD
                             <p class="cart_total_price">{{ number_format($total=$v_content->price*$v_content->qty*(1-$v_content->options->discount))}} VNĐ</p>
+=======
+                            <p class="cart_total_price">{{ number_format($total=$v_content->price*$v_content->qty)}} đ</p>
+>>>>>>> 35b0cbcf4557b5fedf56cecf480adf2826441573
                             <?php
                             $freq=DB::table('users')->get()->where('id',Session::get('user_id'))->first();
                             $temp=$freq->freq;
@@ -105,15 +109,16 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td>    <p>SubTotal: {{ number_format($subtotal).' '.'VNĐ' }}</p>
+                    <td>    <p>SubTotal: {{ number_format($subtotal).' '.'đ' }}</p>
                     </td>
                     <td>
                         <?php
                         $name = Session::get('user_name');
                         if ($name) {
-                            echo '<a  href="http://localhost/mn-shop-laravel/login-checkout"><button>Thanh Toán</button></a>';
+                            echo '<a  href="'?>{{ URL::to("/login-checkout") }}"><button class="btn_thanhtoan">Thanh Toán</button></a>
+                        <?php
                         } else {
-                            echo '<a href="'?>{{ URL::to("/login-page")}}"><button>Thanh Toán</button></a>
+                            echo '<a href="'?>{{ URL::to("/login-page")}}"><button class="btn_thanhtoan">Thanh Toán</button></a>
                         <?php
                         }
                         ?>
@@ -132,6 +137,7 @@
   document.getElementById('number').value = value;
 }
 
+<<<<<<< HEAD
 function decreaseValue() {
   var value = parseInt(document.getElementById('number').value, 10);
   value = isNaN(value) ? 0 : value;
@@ -141,4 +147,51 @@ function decreaseValue() {
 }
        </script>
     @endpush
+=======
+
+@section('categories')
+    @foreach ($categories as $category)
+        <li class="menu-item">
+            <a href="{{ URL::to('/danh-muc-san-pham/' . $category->category_id) }}">
+                <span class="menu-item-name">{{ $category->category_name }}</span>
+            </a>
+        </li>
+    @endforeach
+>>>>>>> 35b0cbcf4557b5fedf56cecf480adf2826441573
 @endsection
+@section('categories_mobile_menu')
+    @foreach ($categories as $category)
+        <li>
+            <a href="{{ URL::to('/danh-muc-san-pham/' . $category->category_id) }}" class="nav__mobile-link">
+                {{ $category->category_name }}
+                <i class="fa-solid fa-angle-right icon-angle-right"></i>
+            </a>
+        </li>
+    @endforeach
+@endsection
+
+@endsection
+
+<?php
+  $name = Session::get('user_name');
+    if($name) {
+    ?>
+@push('scripts')
+<script>
+    userIconMobile.style.display = 'none'
+</script>
+@endpush
+<?php
+    } else {
+    ?>
+@push('scripts')
+<script>
+    // userIconMobile.style.display = 'none'
+    linkSupportMobile.style.display = 'none'
+    linkInfoMobile.style.display = 'none'
+    signoutBtn.style.display = 'none'
+</script>
+@endpush
+<?php
+    }
+?>

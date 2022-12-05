@@ -1,13 +1,25 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 35b0cbcf4557b5fedf56cecf480adf2826441573
 .btn_thanhtoan {
   padding: 4px;
   border: 1px solid rgb(166, 166, 166);
   border-radius: 8px;
   background-color: #ccc;
+<<<<<<< HEAD
 }
 .btn_thanhtoan:hover {
   opacity: 0.6;
 }
 /* Full-width input fields /
+=======
+}
+.btn_thanhtoan:hover {
+  opacity: 0.6;
+}
+/* Full-width input fields */
+>>>>>>> 35b0cbcf4557b5fedf56cecf480adf2826441573
 .input-order {
   width: 100%;
   padding: 15px;
@@ -43,7 +55,11 @@ hr {
   opacity:0.9;
 }
 
+<<<<<<< HEAD
 / Set a grey background color and center the text of the "sign in" section */
+=======
+/* Set a grey background color and center the text of the "sign in" section */
+>>>>>>> 35b0cbcf4557b5fedf56cecf480adf2826441573
 .signin {
   background-color: #f1f1f1;
   text-align: center;

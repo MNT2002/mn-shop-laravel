@@ -113,6 +113,19 @@
                     </li>
                 </ul>
 
+                <label for="checkbox-order" class="sidebar-item">
+                    <div class="sidebar-link" ><i class="fa-sharp fas fa-solid fa-bag-shopping"></i>Đơn hàng</div>
+                </label>
+                <input id="checkbox-order" class="d-none" type="checkbox" name="" id="">
+                <ul class=" sub sub-nav-order sidebar-list">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{ URL::to('/users/create') }}">Đơn chưa duyệt</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{ URL::to('/users') }}">Đơn đã duyệt</a>
+                    </li>
+                </ul>
+
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="#"><i class="fas fa-user"></i>Login Page</a>
                 </li>

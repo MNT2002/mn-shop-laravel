@@ -123,7 +123,12 @@ class UsersController extends Controller
     public function edit($id)
     {
         $this->AuthLogin();
-        echo ('Trang update đang bảo trì');
+
+        $user = Users::where('id', $id)->first();
+        // echo ('Trang update đang bảo trì');
+        return view('/admin.editUser', [
+            'editUser'=> $user
+        ]);
     }
 
     /**
@@ -137,6 +142,53 @@ class UsersController extends Controller
     {
         $this->AuthLogin();
         //
+        $user = Users::where('id', $id)->first();
+        // dd($user);
+        $request->validate([
+            'newName' => 'required|min:3',
+            'newEmail' => 'required|email',
+            'newPassword' => 'required|string|min:4|max:40',
+            'newImage' => 'mimes:jpg,png,jpeg|max:5048',
+        ], [
+            'newImage.max' => 'Ảnh không được có kích thước lớn hơn 5Mb',
+            'newImage.mimes' => 'Ảnh phải là file có định dạng jpg, png hoặc jpeg',
+
+            'newName.required' => 'Bạn chưa nhập tên người dùng',
+            'newName.min' => 'Tên người dùng phải có ít nhất 3 ký tự',
+
+            'newEmail.required' => 'Bạn chưa nhập email người dùng',
+            'newEmail.email' => 'Bạn nhập sai định dạng email',
+
+            'newPassword.required' => 'Bạn chưa nhập mật khẩu',
+            'newPassword.min' => 'Mật khẩu phải có ít nhất 4 kí tự',
+            'newPassword.max' => 'Mật khẩu phải có nhiều nhất 40 kí tự',
+
+        ]);
+        $get_newImage = $user->image_path;
+        if ($request->file('newImage')) {
+            $generatedImageName = 'newImage' . time() . '-'
+                . $request->newName . '.'
+                . $request->newImage->extension();
+
+            // move to a folder
+            $request->newImage->move(public_path('upload/userAvata'), $generatedImageName);
+            $get_newImage = $generatedImageName;
+            
+            if ($user->image_path != '') {
+                unlink(public_path('upload/userAvata/' . $user->image_path));
+            }
+        }
+
+
+        $data = array();
+        $data['name'] = $request->newName;
+        $data['email'] = $request->newEmail;
+        $data['password'] = $request->newPassword;
+        $data['quyen'] = $request->newQuyen;
+        $data['image_path'] = $get_newImage;
+
+        $user->update($data);
+        return Redirect::to('/users');
     }
 
     /**

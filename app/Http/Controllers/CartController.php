@@ -6,6 +6,7 @@ use App\Models\Category_product;
 use App\Models\Products;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Redirect;
+use PhpOption\Option;
 use Session;
 session_start();
 class CartController extends Controller
@@ -24,7 +25,9 @@ class CartController extends Controller
     $data['price']=$product_info->product_price;
     $data['options']['image']=$product_info->product_image_path;
     $data['options']['size']= $productsize;
+    $data['options']['discount']= ($product_info->product_discount)*0.01;
     $data['weight']=0;
+
     Cart::add($data);
         return Redirect::to ('/show_cart');
    }
@@ -43,12 +46,26 @@ class CartController extends Controller
    public function delete_to_cart($rowId){
     Cart::update($rowId,0);
       return Redirect::to ('/show_cart');
+      
    }
    public function update_cart(Request $request){
     $rowId=$request->rowId_cart;
-    $qty=$request->quantity;
+    $qty=$request->number;
     print_r($qty);
     Cart::update($rowId,$qty);
+    return Redirect::to ('/show_cart');
+   }
+   public function update_cart_size(Request $request){
+// Cart::destroy();
+    $rowId=$request->rowId_cart;
+    $size=$request->prd_size;
+   print_r($size);
+   $content=Cart::content();
+   foreach($content as $v_content){
+       $image=$v_content->options->image;
+       $discount=$v_content->options->options->discount;
+   }
+    Cart::update($rowId,['options' => ['size' => $size,'image'=>$image,'discount'=>$discount]]);
     return Redirect::to ('/show_cart');
    }
 

@@ -45,7 +45,6 @@ Route::post('/save-category-product', [CategoryProduct::class, 'save_category_pr
 Route::post('/update-category-product/{category_product_id}', [CategoryProduct::class, 'update_category_product']);
 
 
-Route::resource('/foods', FoodsController::class);
 
 // Product
 Route::get('/add-product', [ProductController::class, 'add_product']);
@@ -65,3 +64,6 @@ Route::post('/save-cart', 'App\Http\Controllers\CartController@save_cart');
 Route::get('/delete-to-cart/{rowId}', 'App\Http\Controllers\CartController@delete_to_cart');
 Route::get('/show_cart', 'App\Http\Controllers\CartController@show_cart');
 Route::post('/update-cart-qty', 'App\Http\Controllers\CartController@update_cart');
+
+Route::get('/login-checkout', 'App\Http\Controllers\CheckoutController@login_checkout');
+Route::post('/checkout-info','App\Http\Controllers\CheckoutController@get_cusinfo');

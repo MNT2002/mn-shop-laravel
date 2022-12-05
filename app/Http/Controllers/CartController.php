@@ -30,14 +30,21 @@ class CartController extends Controller
    }
    public function show_cart(Request $request){
     $meta_desc = "Chuyên bán quần áo, phụ kiện thời trang";
-        $meta_keywords = "Shop bán quần áo, ban quan ao, quan ao thoi trang";
-        $meta_title = "MN Shop";
-        $url_canonical =$request->url();
+    $meta_keywords = "Shop bán quần áo, ban quan ao, quan ao thoi trang";
+    $meta_title = "MN Shop";
+    $url_canonical =$request->url();
+
+    $products = Products::where('product_status', '1')->get()->sortByDesc('product_id');
+
+    $categories = Category_product::where('category_status', '1')->get()->sortBy('category_id');
     return  view('pages.cart.show_cart',[
         'meta_desc' => $meta_desc,
             'meta_keywords' => $meta_keywords,
             'meta_title' => $meta_title,
             'url_canonical' => $url_canonical,
+            'categories' => $categories,
+            'products' => $products
+
     ]) ;
    }
    public function delete_to_cart($rowId){

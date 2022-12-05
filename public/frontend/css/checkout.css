@@ -1,12 +1,15 @@
-* {box-sizing: border-box}
 
-/* Add padding to containers */
-.container {
-  padding: 16px;
+.btn_thanhtoan {
+  padding: 4px;
+  border: 1px solid rgb(166, 166, 166);
+  border-radius: 8px;
+  background-color: #ccc;
 }
-
+.btn_thanhtoan:hover {
+  opacity: 0.6;
+}
 /* Full-width input fields */
-input[type=text], input[type=password] {
+.input-order {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -14,8 +17,7 @@ input[type=text], input[type=password] {
   border: none;
   background: #f1f1f1;
 }
-
-input[type=text]:focus, input[type=password]:focus {
+.input-order:focus {
   background-color: #ddd;
   outline: none;
 }
@@ -28,23 +30,18 @@ hr {
 
 /* Set a style for the submit/register button */
 .registerbtn {
-  background-color: #04AA6D;
+  background-color: var(--text-color);
   color: white;
   padding: 16px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
   width: 100%;
-  opacity: 0.9;
+
 }
 
 .registerbtn:hover {
-  opacity:1;
-}
-
-/* Add a blue text color to links */
-a {
-  color: dodgerblue;
+  opacity:0.9;
 }
 
 /* Set a grey background color and center the text of the "sign in" section */

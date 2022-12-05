@@ -118,6 +118,9 @@
 #checkbox-users:checked ~ .sub-nav-users{
     display: block;
 }
+#checkbox-order:checked ~ .sub-nav-order{
+    display: block;
+}
 
 .notification1{
 	display: flex;

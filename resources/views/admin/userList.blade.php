@@ -38,7 +38,7 @@
                             @endif
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="users/{{ $user->id }}/edit">
+                            <a class="btn btn-primary" href="{{ URL::to('/users/'.$user->id. '/edit')  }}">
                                 <i class="fa-solid fa-pencil"></i>
                                 Edit
                             </a>

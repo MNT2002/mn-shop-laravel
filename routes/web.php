@@ -57,8 +57,6 @@ Route::get('/active-product/{product_id}', [ProductController::class, 'active_pr
 
 Route::post('/save-product', [ProductController::class, 'save_product']);
 Route::post('/update-product/{product_id}', [ProductController::class, 'update_product']);
-<<<<<<< HEAD
-=======
 
 Route::get('/danh-muc-san-pham/{category_id}', [CategoryProduct::class, 'show_category_home']);
 Route::get('/chi-tiet-san-pham/{product_id}', [ProductController::class, 'details_product']);
@@ -67,4 +65,4 @@ Route::post('/save-cart', 'App\Http\Controllers\CartController@save_cart');
 Route::get('/delete-to-cart/{rowId}', 'App\Http\Controllers\CartController@delete_to_cart');
 Route::get('/show_cart', 'App\Http\Controllers\CartController@show_cart');
 Route::post('/update-cart-qty', 'App\Http\Controllers\CartController@update_cart');
->>>>>>> cf7f2bcd9fde009cdace2e469ee54e3c732d59ce
+

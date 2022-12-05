@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Users;
-use Session;
 use App\Models\Category_product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
+use Session;
 session_start();
 
 class userController extends Controller
@@ -57,10 +57,10 @@ class userController extends Controller
         $password = md5($request->password_login);
 
         $user = Users::where('email', $email)->where('password', $password)->first();
-
+        
         if ($user) {
             Session::put('user_name', $user->name);
-            Session::put('user_id', $user->name);
+            Session::put('user_id', $user->id);
             Session::put('user_level', $user->quyen);
             Session::put('message_success', 'Đăng nhập thành công');
             return Redirect::to('/');
@@ -108,7 +108,7 @@ class userController extends Controller
         ]);
 
         Session::put('user_name', $user->name);
-        Session::put('user_id', $user->name);
+        Session::put('user_id', $user->id);
         Session::put('user_level', $user->quyen);
         Session::put('message_success_signUP', 'Đăng kí thành công');
         $user->save();

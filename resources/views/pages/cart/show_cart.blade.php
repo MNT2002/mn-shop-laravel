@@ -79,7 +79,15 @@
                     <td>    <p>SubTotal: {{ number_format($subtotal).' '.'VNĐ' }}</p>
                     </td>
                     <td>
-                    <a href="#"><Button>Thanh Toán</Button></a>
+                        <?php
+                        $name = Session::get('user_name');
+                        if ($name) {
+                            echo '<a  href="http://localhost/mn-shop-laravel/login-checkout"><button>Thanh Toán</button></a>';
+                        } else {
+                            echo '<a href="'?>{{ URL::to("/login-page")}}"><button>Thanh Toán</button></a>
+                        <?php
+                        }
+                        ?>
                     </td>
                    </tr>
             </table>

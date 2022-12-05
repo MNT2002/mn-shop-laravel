@@ -59,7 +59,7 @@ class userController extends Controller
 
         if ($user) {
             Session::put('user_name', $user->name);
-            Session::put('user_id', $user->name);
+            Session::put('user_id', $user->id);
             Session::put('user_level', $user->quyen);
             Session::put('message_success', 'Đăng nhập thành công');
             return Redirect::to('/');
@@ -106,11 +106,11 @@ class userController extends Controller
             'image_path' => '',
         ]);
 
+        $user->save();
         Session::put('user_name', $user->name);
-        Session::put('user_id', $user->name);
+        Session::put('user_id', $user->id);
         Session::put('user_level', $user->quyen);
         Session::put('message_success_signUP', 'Đăng kí thành công');
-        $user->save();
         return redirect('/'); 
         // same
         // return Redirect::to('/');

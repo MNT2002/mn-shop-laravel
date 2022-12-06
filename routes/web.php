@@ -2,13 +2,13 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryProduct;
-use App\Http\Controllers\FoodsController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\OrderController;
 
 // ----------Frontend----------
 Route::get('/', [PagesController::class, 'index']);
@@ -31,6 +31,9 @@ Route::get('/dashboard', [AdminController::class, 'show_admin_dashboard']);
 Route::get('/logout', [AdminController::class, 'logout']);
 Route::post('/admin-dashboard', [AdminController::class, 'dashboard']);
 Route::resource('/users', UsersController::class);
+
+Route::get('/ordered', [OrderController::class, 'ordered']);
+Route::get('/un-order', [OrderController::class, 'un_order']);
 
 //Category Product
 Route::get('/add-category-product', [CategoryProduct::class, 'add_category_product']);

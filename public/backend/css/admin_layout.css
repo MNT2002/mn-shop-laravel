@@ -283,9 +283,11 @@
     margin-right: 24px;
     font-size: 1.6rem;
     font-weight: 600;
+    text-decoration: none;
     letter-spacing: 1.3px;
     background-color: var(--text-color);
     border-radius: 12px;
+    border: 2px solid var(--text-color);
     color: #ff9966;
     padding: 18px 26px;
     cursor: pointer;
@@ -298,4 +300,46 @@
 .status-btn:hover {
     background-color: #ff9966;
     color: var(--text-color);
+}
+
+.dashboard-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+}
+
+.all-user-icon__btn {
+    position: relative;
+}
+
+.all-user-icon__notification,
+.all-order-icon__notification {
+    position: absolute;
+    right: -16px;
+    top: -16px;
+    z-index: 100;
+    display: inline-block;
+    min-width: 38px;
+    padding: 9px 8px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: rgb(198, 32, 32);
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border: 2px solid var(--text-color)
+}
+
+.all-user-icon__notification {
+    background-color: rgb(4, 255, 0);
+}
+
+.all-user-icon__notification:hover,
+.all-order-icon__notification:hover {
+    
 }

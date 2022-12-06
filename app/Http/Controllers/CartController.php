@@ -26,12 +26,12 @@ class CartController extends Controller
     $data['options']['size']= $productsize;
     $data['weight']=0;
     Cart::add($data);
-        return Redirect::to ('/show_cart');
+        return Redirect::to ('/danh-muc-san-pham/'. $product_info->category_id);
    }
    public function show_cart(Request $request){
-    $meta_desc = "Chuyên bán quần áo, phụ kiện thời trang";
-    $meta_keywords = "Shop bán quần áo, ban quan ao, quan ao thoi trang";
-    $meta_title = "MN Shop";
+    $meta_desc = "";
+    $meta_keywords = "";
+    $meta_title = "Giỏ hàng";
     $url_canonical =$request->url();
 
     $products = Products::where('product_status', '1')->get()->sortByDesc('product_id');

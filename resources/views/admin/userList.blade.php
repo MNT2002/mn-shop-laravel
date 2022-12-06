@@ -32,7 +32,7 @@
                         <td>{{ $user->email }}</td>
                         <td>
                             @if($user->quyen == 1)
-                            {{ "admin" }}
+                            {{ "Admin" }}
                             @else
                             {{ "Thường" }}
                             @endif

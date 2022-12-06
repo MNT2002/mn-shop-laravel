@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Models\Users;
+use DB;
 use Session;
 use Illuminate\Support\Facades\Redirect;
 
@@ -29,7 +30,14 @@ class AdminController extends Controller
     public function show_admin_dashboard()
     {
         $this->AuthLogin();
-        return view('admin.dashboard');
+
+        $users = Users::get()->count();
+        $orders = DB::table('tbl_oder')->get()->count();
+
+        return view('admin.dashboard', [
+            'users' => $users,
+            'orders' => $orders
+        ]);
     }
     public function dashboard(Request $request)
     {

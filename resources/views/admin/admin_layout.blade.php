@@ -26,7 +26,12 @@
             <!-- Dropdown -->
             <li class="nav-item__admin">
                 <div class="nav-item-wrapper">
-                    <img class="nav-item__img" alt="" src="{{ asset('public/upload/userAvata/default.jpg')}}">
+                    @if (Session::get('admin_image_path'))
+                        <img class="nav-item__img" alt="" src="{{ asset('public/upload/userAvata') }}<?php $image = Session::get('admin_image_path');echo '/';echo $image;?>">
+                    @else
+                        <img class="nav-item__img" alt="" src="{{ asset('public/upload/userAvata/default.jpg')}}">
+                    @endif
+
                     <span class="nav-item__username">
                         <?php
                         $name = Session::get('admin_name');

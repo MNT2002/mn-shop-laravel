@@ -58,188 +58,197 @@
 
                     </div>
                     <p>Tùy chọn:</p>
-                    <form action="{{ URL::to ('/save-cart') }}" method="POST">
+                    <form action="{{ URL::to('/save-cart') }}" method="POST">
                         {{ csrf_field() }}
                         <input type="hidden" name="productid_hidden"value="{{ $product->product_id }}">
-                    <div class="single-item-options">
-                        <p>Size:</p>
-                        <select class="wc-select" name="size" value="XS">
-                            <option value="XS">XS</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                        </select>
-                        <p>Số lượng</p>
-                        <select class="wc-select" name="qty" value="1">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
-                        <button type="submit"class="add-to-cart">
-                        
-                            <i class="fa fa-shopping-cart"></i>
-                            Thêm giỏ hàng
-                       
-                    </button>
-                </form>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="fb-share-button mt-3" data-href="http://localhost:8080/mn-shop-laravel" data-layout="button_count"
-                data-size="large"><a target="_blank"
-                    href="https://www.facebook.com/sharer/sharer.php?u={{ $url_canonical }}&amp;src=sdkpreparse"
-                    class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
-
-            <div class="fb-comments" data-href="{{ $url_canonical }}" data-width="" data-numposts="20"></div>
-            {{-- Recommend product --}}
-            <div class="review">
-                <div class="header-content">
-                    <div class="title">
-                        <h3>Sản phẩm liên quan</h3>
-                    </div>
-                </div>
-                <div class="btn-next">
-                    <i class="fas btn fa-chevron-right btnRight"></i>
-                </div>
-                <div class="btn-prev">
-                    <i class="fas btn fa-chevron-left btnLeft"></i>
-                </div>
-
-                <div class="nav">
-                </div>
-                <div class="review-box">
-                    @foreach ($products as $recommendProduct)
-                        <div class="box">
-                            <div class="image">
-                                <img src="{{ asset('/public/upload/product/' . $recommendProduct->product_image_path) }}"
-                                    alt="" />
-                            </div>
-                            <div class="name">{{ $recommendProduct->product_name }}</div>
-                            <div class="price">
-                                {{ number_format($recommendProduct->product_price - ($recommendProduct->product_price * $recommendProduct->product_discount) / 100) . ' đ' }}
-                            </div>
-                            <div class="description">{{ $recommendProduct->product_desc }}</div>
-                            <a href="/mn-shop-laravel/chi-tiet-san-pham/{{ $recommendProduct->product_id }}"
-                                class="item__btn">
-                                <span>XEM SẢN PHẨM</span>
-                            </a>
-                            @if ($recommendProduct->product_discount != 0)
-                                <div class="home-product-item__sale-off">
-                                    <span
-                                        class="home-product-item__sale-off-percent">{{ $recommendProduct->product_discount }}%</span>
-                                    <span class="home-product-item__sale-off-label">GIẢM</span>
-                                </div>
-                            @endif
-                        </div>
-                    @endforeach
-                    <!-- end box -->
+                        <div class="single-item-options">
+                            <p>Size:</p>
+                            <select class="wc-select" name="size" value="XS">
+                                <option value="XS">XS</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                            </select>
+                            <p>Số lượng</p>
+                            <select class="wc-select" name="qty" value="1">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                            <?php
+                            $name = Session::get('user_name');
+                            if ($name) {
+                                ?>
+                                <button type="submit"class="add-to-cart">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Thêm giỏ hàng
+                                </button>
+                            <?php
+                            } else {
+                            ?>
+                            <a class="add-to-cart" href="{{ URL::to('/login-page') }}"><i class="fa fa-shopping-cart"></i>
+                                Thêm giỏ hàng</a>
+                            <?php
+                            }
+                            ?>
+                    </form>
+                    <div class="clearfix"></div>
                 </div>
             </div>
         </div>
 
-        @include('layouts.contact')
+        <div class="fb-share-button mt-3" data-href="http://localhost:8080/mn-shop-laravel" data-layout="button_count"
+            data-size="large"><a target="_blank"
+                href="https://www.facebook.com/sharer/sharer.php?u={{ $url_canonical }}&amp;src=sdkpreparse"
+                class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
 
-    @section('categories')
-        @foreach ($categories as $category)
-            <li class="menu-item">
-                <a href="{{ URL::to('/danh-muc-san-pham/' . $category->category_id) }}">
-                    <span class="menu-item-name">{{ $category->category_name }}</span>
-                </a>
-            </li>
-        @endforeach
-    @endsection
+        <div class="fb-comments" data-href="{{ $url_canonical }}" data-width="" data-numposts="20"></div>
+        {{-- Recommend product --}}
+        <div class="review">
+            <div class="header-content">
+                <div class="title">
+                    <h3>Sản phẩm liên quan</h3>
+                </div>
+            </div>
+            <div class="btn-next">
+                <i class="fas btn fa-chevron-right btnRight"></i>
+            </div>
+            <div class="btn-prev">
+                <i class="fas btn fa-chevron-left btnLeft"></i>
+            </div>
 
-    @section('categories_mobile_menu')
-        @foreach ($categories as $category)
-            <li>
-                <a href="{{ URL::to('/danh-muc-san-pham/' . $category->category_id) }}" class="nav__mobile-link">
-                    {{ $category->category_name }}
-                    <i class="fa-solid fa-angle-right icon-angle-right"></i>
-                </a>
-            </li>
-        @endforeach
-    @endsection
+            <div class="nav">
+            </div>
+            <div class="review-box">
+                @foreach ($products as $recommendProduct)
+                    <div class="box">
+                        <div class="image">
+                            <img src="{{ asset('/public/upload/product/' . $recommendProduct->product_image_path) }}"
+                                alt="" />
+                        </div>
+                        <div class="name">{{ $recommendProduct->product_name }}</div>
+                        <div class="price">
+                            {{ number_format($recommendProduct->product_price - ($recommendProduct->product_price * $recommendProduct->product_discount) / 100) . ' đ' }}
+                        </div>
+                        <div class="description">{{ $recommendProduct->product_desc }}</div>
+                        <a href="/mn-shop-laravel/chi-tiet-san-pham/{{ $recommendProduct->product_id }}" class="item__btn">
+                            <span>XEM SẢN PHẨM</span>
+                        </a>
+                        @if ($recommendProduct->product_discount != 0)
+                            <div class="home-product-item__sale-off">
+                                <span
+                                    class="home-product-item__sale-off-percent">{{ $recommendProduct->product_discount }}%</span>
+                                <span class="home-product-item__sale-off-label">GIẢM</span>
+                            </div>
+                        @endif
+                    </div>
+                @endforeach
+                <!-- end box -->
+            </div>
+        </div>
+    </div>
 
-    @push('scripts')
-        <script>
-            // recommend product
-            const reviewDiv = document.querySelector('.review');
-            const wrapperBox = document.querySelector('.review-box');
-            const listBox = document.querySelectorAll('.box');
-            const btnLeft = document.querySelector('.btnLeft');
-            const btnRight = document.querySelector('.btnRight');
+    @include('layouts.contact')
 
-            document.addEventListener("DOMContentLoaded", () => {
-                // responsive
-                window.addEventListener("resize", function() {
-                    if (window.innerWidth >= 1024) {
-                        make_slide(3)
-                    } else if (window.innerWidth >= 740) {
-                        make_slide(2)
-                    } else {
-                        make_slide(1);
-                    }
-                })
+@section('categories')
+    @foreach ($categories as $category)
+        <li class="menu-item">
+            <a href="{{ URL::to('/danh-muc-san-pham/' . $category->category_id) }}">
+                <span class="menu-item-name">{{ $category->category_name }}</span>
+            </a>
+        </li>
+    @endforeach
+@endsection
 
-                const media = [
-                    window.matchMedia('(min-width: 1024px)'),
-                    window.matchMedia('(min-width: 740px)'),
-                ]
+@section('categories_mobile_menu')
+    @foreach ($categories as $category)
+        <li>
+            <a href="{{ URL::to('/danh-muc-san-pham/' . $category->category_id) }}" class="nav__mobile-link">
+                {{ $category->category_name }}
+                <i class="fa-solid fa-angle-right icon-angle-right"></i>
+            </a>
+        </li>
+    @endforeach
+@endsection
 
-                if (media[0].matches) {
+@push('scripts')
+    <script>
+        // recommend product
+        const reviewDiv = document.querySelector('.review');
+        const wrapperBox = document.querySelector('.review-box');
+        const listBox = document.querySelectorAll('.box');
+        const btnLeft = document.querySelector('.btnLeft');
+        const btnRight = document.querySelector('.btnRight');
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // responsive
+            window.addEventListener("resize", function() {
+                if (window.innerWidth >= 1024) {
                     make_slide(3)
-                } else if (media[1].matches) {
+                } else if (window.innerWidth >= 740) {
                     make_slide(2)
                 } else {
-                    make_slide(1)
+                    make_slide(1);
                 }
+            })
 
-            });
+            const media = [
+                window.matchMedia('(min-width: 1024px)'),
+                window.matchMedia('(min-width: 740px)'),
+            ]
 
-            function make_slide(amountSLideAppear) {
-                const widthItem = reviewDiv.offsetWidth / amountSLideAppear;
-
-                let widthAllBox = widthItem * listBox.length; //Chiều dài của toàn bộ item
-                wrapperBox.style.width = `${widthAllBox}px`;
-
-                listBox.forEach(element => {
-                    element.style.marginRight = '10px';
-                    element.style.marginLeft = '10px';
-                    element.style.width = `${widthItem - 20}px`
-                })
-
-                // Xử lí slide button
-                let count = 0;
-                let spacing = widthAllBox - widthItem * amountSLideAppear;
-                btnRight.addEventListener('click', function() {
-                    count += widthItem;
-
-                    if (count > spacing) {
-                        count = 0
-                    }
-                    wrapperBox.style.transform = `translateX(${-count}px)`
-                })
-                btnLeft.addEventListener('click', function() {
-                    count -= widthItem;
-
-                    if (count < 0) {
-                        count = spacing
-                    }
-                    wrapperBox.style.transform = `translateX(${-count}px)`
-                })
+            if (media[0].matches) {
+                make_slide(3)
+            } else if (media[1].matches) {
+                make_slide(2)
+            } else {
+                make_slide(1)
             }
-        </script>
-    @endpush
+
+        });
+
+        function make_slide(amountSLideAppear) {
+            const widthItem = reviewDiv.offsetWidth / amountSLideAppear;
+
+            let widthAllBox = widthItem * listBox.length; //Chiều dài của toàn bộ item
+            wrapperBox.style.width = `${widthAllBox}px`;
+
+            listBox.forEach(element => {
+                element.style.marginRight = '10px';
+                element.style.marginLeft = '10px';
+                element.style.width = `${widthItem - 20}px`
+            })
+
+            // Xử lí slide button
+            let count = 0;
+            let spacing = widthAllBox - widthItem * amountSLideAppear;
+            btnRight.addEventListener('click', function() {
+                count += widthItem;
+
+                if (count > spacing) {
+                    count = 0
+                }
+                wrapperBox.style.transform = `translateX(${-count}px)`
+            })
+            btnLeft.addEventListener('click', function() {
+                count -= widthItem;
+
+                if (count < 0) {
+                    count = spacing
+                }
+                wrapperBox.style.transform = `translateX(${-count}px)`
+            })
+        }
+    </script>
+@endpush
 @endsection
 
 <?php
@@ -247,20 +256,20 @@
     if($name) {
     ?>
 @push('scripts')
-    <script>
-        userIconMobile.style.display = 'none'
-    </script>
+<script>
+    userIconMobile.style.display = 'none'
+</script>
 @endpush
 <?php
     } else {
     ?>
 @push('scripts')
-    <script>
-        // userIconMobile.style.display = 'none'
-        linkSupportMobile.style.display = 'none'
-        linkInfoMobile.style.display = 'none'
-        signoutBtn.style.display = 'none'
-    </script>
+<script>
+    // userIconMobile.style.display = 'none'
+    linkSupportMobile.style.display = 'none'
+    linkInfoMobile.style.display = 'none'
+    signoutBtn.style.display = 'none'
+</script>
 @endpush
 <?php
     }

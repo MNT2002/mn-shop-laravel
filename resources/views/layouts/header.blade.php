@@ -33,9 +33,19 @@
 
         <ul class="header__navbar-list flex-right justify-content-end">
             <li class="header__navbar-item cart-icon">
-                <a class="cart-link" href="{{ URL::to('/show_cart') }}">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </a>
+                <?php
+                $name = Session::get('user_name');
+                if ($name) {
+                    ?>
+                    <a class="cart-link" href="{{ URL::to('/show_cart') }}"><i class="fa-solid fa-cart-shopping"></i></a>
+                <?php
+                } else {
+                ?>
+                    <a class="cart-link" href="{{ URL::to('/login-page') }}"><i class="fa-solid fa-cart-shopping"></i></a>
+                <?php
+                }
+                ?>
+                
             </li>
 
             <li class="header__navbar-item-user header__navbar-item">

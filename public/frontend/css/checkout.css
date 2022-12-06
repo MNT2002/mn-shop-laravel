@@ -1,20 +1,16 @@
 
 .btn_thanhtoan {
-  padding: 4px;
-  border: 1px solid rgb(166, 166, 166);
-  border-radius: 8px;
-  background-color: #ccc;
+  margin: 0;
+  min-width: 132px;
+  border: 1px solid #ddd;
+  font-weight: 600;
 
 }
 .btn_thanhtoan:hover {
-  opacity: 0.6;
+  color: #ff9966;
+
 }
-/* Full-width input fields /
-=======
-}
-.btn_thanhtoan:hover {
-  opacity: 0.6;
-}
+
 /* Full-width input fields */
 .input-order {
   width: 100%;

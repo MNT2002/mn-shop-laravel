@@ -50,3 +50,34 @@
       -webkit-appearance: none;
       margin: 0;
   }
+
+  .update-btn {
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+    bottom: -26px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+
+  .update-btn:hover {
+    background-color: #ddd;
+    color: var(--text-color);
+  }
+
+  .td_title {
+    text-align: center;
+    font-weight: 600;
+  }
+  .td_item {
+    text-align: center;
+  }
+
+  .delete-cart-icon {
+    border: 1px solid #b4b4b4;
+    padding: 3px 6px;
+  }
+
+  .delete-cart-icon:hover {
+    background-color: #ddd;
+  }

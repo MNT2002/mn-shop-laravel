@@ -70,7 +70,7 @@ class CartController extends Controller
    $content=Cart::content();
    foreach($content as $v_content){
        $image=$v_content->options->image;
-       $discount=$v_content->options->options->discount;
+       $discount=$v_content->options->discount;
    }
     Cart::update($rowId,['options' => ['size' => $size,'image'=>$image,'discount'=>$discount]]);
     return Redirect::to ('/show_cart');

@@ -4,6 +4,13 @@
   border: 1px solid rgb(166, 166, 166);
   border-radius: 8px;
   background-color: #ccc;
+
+}
+.btn_thanhtoan:hover {
+  opacity: 0.6;
+}
+/* Full-width input fields /
+=======
 }
 .btn_thanhtoan:hover {
   opacity: 0.6;
@@ -22,13 +29,12 @@
   outline: none;
 }
 
-/* Overwrite default styles of hr */
+
 hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
 
-/* Set a style for the submit/register button */
 .registerbtn {
   background-color: var(--text-color);
   color: white;
@@ -44,7 +50,7 @@ hr {
   opacity:0.9;
 }
 
-/* Set a grey background color and center the text of the "sign in" section */
+
 .signin {
   background-color: #f1f1f1;
   text-align: center;

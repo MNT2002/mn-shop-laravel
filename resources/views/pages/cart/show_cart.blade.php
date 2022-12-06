@@ -22,6 +22,7 @@
                         <td class='size'>Size</td>
                         <td class="quantity">Quantity</td>
                         <td class="ud-quantity">Update</td>
+                        <td class="ud-size">UpdateSize</td>
                         <td class="total">Total</td>
                         <td></td>
                     </tr>
@@ -49,18 +50,50 @@
                             </div>
                         </td>
                         <td>
-                            <form action="{{ URL ::to('/update-cart-qty') }}" method="POST">
+                            <form action="{{ URL ::to('/update-cart-qty') }}" method="POST" style="width:150px">
                                 {{ csrf_field() }}
-                            <input class="cart_quantity_input" type="text" name="quantity" value="" autocomplete="off" size="1">
+                                <input type="hidden"value="{{ $v_content->rowId }}"name ='rowId_cart'>
+                                    <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+                                    <input class="qlt-input" type="number" id="number"name="number" value="" autocomplete="off"/>
+                                    <div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
+                                    <input type="submit"value='Cập nhật'name='update-qty'class="btn btn-default btn-sm">
+                        </form>
+                        </td>
+                        <td>
+                            <form action="{{ URL ::to('/update-cart-size') }}" method="POST">
+                                {{ csrf_field() }}
                             <input type="hidden"value="{{ $v_content->rowId }}"name ='rowId_cart'>
-                            <input type="submit"value='Cập nhật'name='update-qty'class="btn btn-default btn-sm">
+                            <select class="wc-select" name="prd_size" value="XS">
+                                <option value="XS">XS</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                            </select>
+                            <input type="submit"value='Cập nhật'name='update-size'class="btn btn-default btn-sm">
                         </form>
                         </td>
                         <td class="cart_total">
+<<<<<<< HEAD
+                            <p class="cart_total_price">{{ number_format($total=$v_content->price*$v_content->qty*(1-$v_content->options->discount))}} VNĐ</p>
+=======
                             <p class="cart_total_price">{{ number_format($total=$v_content->price*$v_content->qty)}} đ</p>
+>>>>>>> 35b0cbcf4557b5fedf56cecf480adf2826441573
                             <?php
-                            
-                           $subtotal+=$v_content->price*$v_content->qty;
+                            $freq=DB::table('users')->get()->where('id',Session::get('user_id'))->first();
+                            $temp=$freq->freq;
+                            if($temp==0 ){
+                                          $subtotal+=$total*0.9;
+                          }
+                             else
+                                    if($temp/5==0)
+                                     {
+                                             $subtotal+=$total*0.85;  
+                                     }
+                             else
+                            {
+                                         $subtotal+=$total;
+                             }
                             ?>
                         </td>
                         <td class="cart_delete">
@@ -95,7 +128,26 @@
         </div>
     </div>
 </section> <!--/#cart_items-->
+@push('scripts')
+<script>
+   function increaseValue() {
+  var value = parseInt(document.getElementById('number').value, 10);
+  value = isNaN(value) ? 0 : value;
+  value++;
+  document.getElementById('number').value = value;
+}
 
+<<<<<<< HEAD
+function decreaseValue() {
+  var value = parseInt(document.getElementById('number').value, 10);
+  value = isNaN(value) ? 0 : value;
+  value < 1 ? value = 1 : '';
+  value--;
+  document.getElementById('number').value = value;
+}
+       </script>
+    @endpush
+=======
 
 @section('categories')
     @foreach ($categories as $category)
@@ -105,6 +157,7 @@
             </a>
         </li>
     @endforeach
+>>>>>>> 35b0cbcf4557b5fedf56cecf480adf2826441573
 @endsection
 @section('categories_mobile_menu')
     @foreach ($categories as $category)

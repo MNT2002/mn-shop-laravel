@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="{{ URL::to('public/frontend/css/productpage.css') }}">
     <link rel="stylesheet" href="{{ URL::to('public/frontend/css/detailsProductPage.css') }}">
     <link rel="stylesheet" href="{{ URL::to('public/frontend/css/checkout.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('public/frontend/css/cart.css') }}">
 
 </head>
 

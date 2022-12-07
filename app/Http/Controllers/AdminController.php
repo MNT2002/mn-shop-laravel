@@ -33,8 +33,9 @@ class AdminController extends Controller
 
         $users = Users::get()->count();
         $approved = DB::table('tbl_oder_detail')->select('oder_id','status')->where('status',1)->groupBy('oder_id','status')->get()->count();
-        $unApproved = DB::table('tbl_oder_detail')->select('oder_id','status')->where('status',0)->groupBy('oder_id','status')->get()->count();
 
+        $unApproved = DB::table('tbl_oder_detail')->select('oder_id','status')->where('status',0)->groupBy('oder_id','status')->get()->count();
+        
         return view('admin.dashboard', [
             'users' => $users,
             'approved' => $approved,

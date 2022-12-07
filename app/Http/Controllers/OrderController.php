@@ -61,6 +61,6 @@ class OrderController extends Controller
         // echo '</pre>';
         
 
-        return view('/admin.unOdered');
+        return view('/admin.unOrder');
     }
 }

@@ -33,7 +33,7 @@
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="receipt-right">
                                             <p><b>Mã đơn: #</b>{{ $o->oder_id }}</p>
-                                            <p><b>Ngày :</b> 15 Aug 2016</p>
+                                            <p><b>Thời gian: </b> {{ $o->date }}</p>
                                         </div>
                                     </div>
                                 </div>

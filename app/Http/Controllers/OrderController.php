@@ -53,14 +53,17 @@ class OrderController extends Controller
     }
 
     public function order($oder_id) {
-        $data = array();
-        $data['status'] = 1;
-        // echo $oder_id;
-        // echo '<pre>';
+     
         DB::table('tbl_oder_detail')->where('oder_id',$oder_id)->update(['status'=>1]);
-        // echo '</pre>';
-        
+        $oder_id=DB::table('tbl_oder_detail')->where('status',0)->select('oder_id')->groupby('oder_id')->get(); 
+        $oder_detail = DB::table('tbl_oder_detail')->get();
+        $oder = DB::table('tbl_oder')->get();
 
-        return view('/admin.unOdered');
+        return view('/admin.unOrder', [
+            'oder_id' => $oder_id,
+            'oder_detail' => $oder_detail,
+            'oder' => $oder
+        ]);
+
     }
 }

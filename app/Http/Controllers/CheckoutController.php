@@ -48,6 +48,9 @@ class CheckoutController extends Controller
         $data['name']=$request->name;
         $data['address']=$request->address;
         $data['phonenumber']=$request->phonenumber;
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $date=date('d/m/Y-H:i');
+        $data['date']=$date;
         $oder_id=DB::table('tbl_oder')->insertGetId($data);
         $content=Cart::Content();
         $freq=DB::table('users')->get()->where('id',Session::get('user_id'))->first();

@@ -32,11 +32,13 @@ class AdminController extends Controller
         $this->AuthLogin();
 
         $users = Users::get()->count();
-        $orders = DB::table('tbl_oder')->get()->count();
+        $approved = DB::table('tbl_oder_detail')->select('oder_id','status')->where('status',1)->groupBy('oder_id','status')->count();
+        $unApproved = DB::table('tbl_oder_detail')->select('oder_id','status')->where('status',0)->groupBy('oder_id','status')->count();
 
         return view('admin.dashboard', [
             'users' => $users,
-            'orders' => $orders
+            'approved' => $approved,
+            'unApproved' => $unApproved
         ]);
     }
     public function dashboard(Request $request)

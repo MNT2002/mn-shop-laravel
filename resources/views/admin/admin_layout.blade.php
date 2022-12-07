@@ -11,6 +11,7 @@
     <link href="{{ URL::to('public/backend/css/admin_layout.css') }}" rel="stylesheet">
     <link href="{{ URL::to('public/backend/css/addCategoryProduct.css') }}" rel="stylesheet">
     <link href="{{ URL::to('public/backend/css/allCategoryProduct.css') }}" rel="stylesheet">
+    <link href="{{ URL::to('public/backend/css/Order.css') }}" rel="stylesheet">
 
 
     <title>Dashboard</title>
@@ -48,6 +49,19 @@
             <div class="form-logged-overlay"></div>
             <div class="form-logged">
                 <nav class="form-logged-wrapper">
+                    <div class="form-logged__title-wrapper">
+                        <h1>
+                            Xin chào
+                            <span class="form-logged__title">
+                                <?php
+                                    $name = Session::get('admin_name');
+                                    if($name) {
+                                        echo $name;
+                                    }
+                                    ?>
+                            </span>
+                        </h1>
+                    </div>
                     <ul class="form-logged__list">
                         <li>
                             <a href="/thongtintaikhoan" class="form-logged__link">

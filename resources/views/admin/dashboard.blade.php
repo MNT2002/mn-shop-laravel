@@ -20,14 +20,14 @@
                     <a href="{{ URL::to('/ordered') }}" class="status-btn all-order-icon__btn">
                         Đơn đã duyệt
                         <span class="all-user-icon__notification">
-                            {{ $orders }}
+                            {{ $approved }}
                         </span>
                     </a>
 
                     <a href="{{ URL::to('/un-order') }}" class="status-btn all-order-icon__btn">
                         Đơn chưa duyệt
                         <span class="all-order-icon__notification">
-                            {{ $orders }}
+                            {{ $unApproved }}
                         </span>
                     </a>
 

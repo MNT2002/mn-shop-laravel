@@ -34,6 +34,8 @@ Route::resource('/users', UsersController::class);
 
 Route::get('/ordered', [OrderController::class, 'ordered']);
 Route::get('/un-order', [OrderController::class, 'un_order']);
+Route::get('/order/{oder_id}', [OrderController::class, 'order']);
+
 
 //Category Product
 Route::get('/add-category-product', [CategoryProduct::class, 'add_category_product']);

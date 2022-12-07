@@ -23,7 +23,7 @@
                 <table class="table table-condensed">
                     <thead>
                         <tr class="cart_menu">
-                            <td class="td_title image">Item</td>
+                            <td class="td_title">Item</td>
                             <td class="td_title Prd-name">Name</td>
                             <td class="td_title price">Price</td>
                             <td class="td_title size">Size</td>
@@ -37,7 +37,7 @@
                     <tbody>
                         @foreach ($content as $v_content)
                             <tr>
-                                <td class="td_item cart_product">
+                                <td class="cart_product" style="text-align: center">
                                     <a href="{{ URL::to('chi-tiet-san-pham/' . $v_content->id) }}"><img style="width:120px"
                                             src="{{ asset('/public/upload/product/' . $v_content->options->image) }}"></a>
                                 </td>
@@ -55,15 +55,17 @@
                                         <p>{{ $v_content->qty }}</p>
                                     </div>
                                 </td>
+
+                                {{-- /Cập nhật số lượng --}}
                                 <td class="td_item">
                                     <form style="position: relative;" action="{{ URL::to('/update-cart-qty') }}" method="POST">
                                         {{ csrf_field() }}
                                         <input type="hidden"value="{{ $v_content->rowId }}"name='rowId_cart'>
-                                        <div class="value-button" id="decrease" onclick="decreaseValue()"
+                                        <div class="value-button" data-id="{{ $v_content->rowId }}" id="decrease" onclick="decreaseValue(this)"
                                             value="Decrease Value">-</div>
-                                        <input class="qlt-input" type="number" id="number"name="number" value="1" min="1"
+                                        <input class="qlt-input number" type="number" id="number{{ $v_content->rowId }}"name="number{{ $v_content->rowId }}" data-id="{{ $v_content->rowId }}" value="{{ $v_content->qty }}" min="1"
                                             autocomplete="off" />
-                                        <div class="value-button" id="increase" onclick="increaseValue()"
+                                        <div class="value-button" data-id="{{ $v_content->rowId }}" id="increase" onclick="increaseValue(this)"
                                             value="Increase Value">+</div>
                                         <input type="submit"value='Cập nhật'name='update-qty'class="update-btn btn btn-default btn-sm">
                                     </form>
@@ -72,7 +74,8 @@
                                     <form style="position: relative;" action="{{ URL::to('/update-cart-size') }}" method="POST">
                                         {{ csrf_field() }}
                                         <input type="hidden"value="{{ $v_content->rowId }}"name='rowId_cart'>
-                                        <select class="wc-select" name="prd_size" value="XS">
+                                        <select class="wc-select" name="prd_size">
+                                           
                                             <option value="XS">XS</option>
                                             <option value="S">S</option>
                                             <option value="M">M</option>
@@ -144,19 +147,23 @@
     <!--/#cart_items-->
     @push('scripts')
         <script>
-            function increaseValue() {
-                var value = parseInt(document.getElementById('number').value, 10);
+            function increaseValue(e) {
+                var id = e.getAttribute('data-id')
+                var id_element = 'number' + id;
+                var value = parseInt(document.getElementById(id_element).value, 10);
                 value = isNaN(value) ? 0 : value;
                 value++;
-                document.getElementById('number').value = value;
+                document.getElementById(id_element).value = value;
             }
 
-            function decreaseValue() {
-                var value = parseInt(document.getElementById('number').value, 10);
+            function decreaseValue(e) {
+                var id = e.getAttribute('data-id')
+                var id_element = 'number' + id;
+                var value = parseInt(document.getElementById(id_element).value, 10);
                 value = isNaN(value) ? 0 : value;
                 value < 1 ? value = 1 : '';
                 value--;
-                document.getElementById('number').value = value;
+                document.getElementById(id_element).value = value;
             }
         </script>
     @endpush

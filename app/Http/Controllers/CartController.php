@@ -57,8 +57,8 @@ class CartController extends Controller
    }
    public function update_cart(Request $request){
     $rowId=$request->rowId_cart;
-    $qty=$request->number;
-    print_r($qty);
+    $qty=$request->input('number'.$rowId);
+    // print_r($qty);
     Cart::update($rowId,$qty);
     return Redirect::to ('/show_cart');
    }
@@ -66,11 +66,16 @@ class CartController extends Controller
 // Cart::destroy();
     $rowId=$request->rowId_cart;
     $size=$request->prd_size;
-   print_r($size);
+//    print_r($size);
    $content=Cart::content();
+   $image='';
+    $discount = 0;
    foreach($content as $v_content){
-       $image=$v_content->options->image;
-       $discount=$v_content->options->discount;
+        if($v_content->rowId == $rowId) {
+            $image=$v_content->options->image;
+            $discount=$v_content->options->discount;
+            break;
+        }
    }
     Cart::update($rowId,['options' => ['size' => $size,'image'=>$image,'discount'=>$discount]]);
     return Redirect::to ('/show_cart');

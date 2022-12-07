@@ -4,6 +4,7 @@
 	left: 0;
 	right: 0;
 	height: 92px;
+    z-index: 100;
 }
 .page-title-wrapper{
 	padding: 2px;
@@ -182,7 +183,34 @@
 .form-logged-wrapper {
 }
 
-
+.form-logged__title-wrapper {
+    border-bottom: 1px solid #dedede;
+    padding: 20px 12px;
+    user-select: none;
+}
+.form-logged__title-wrapper h1 {
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+}
+.form-logged__title {
+    max-width: 188px;
+    margin-left: 6px;
+    text-decoration: underline;
+    font-size: 1.4rem;
+    font-style: italic;
+    font-weight: 400;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
 
 .form-logged__list {
     padding-left: 0;
